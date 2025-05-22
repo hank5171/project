@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
 
 public class RoleDto {
 	private Integer roleId;
-	
 	private RoleLevel level;
-	
 	private String roleName;
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.mapper.UserMapper;
@@ -11,8 +12,9 @@ import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
+import com.example.demo.util.Hash;
 
-
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
@@ -28,18 +30,13 @@ public class UserServiceImpl implements UserService {
 				.map(userMapper::toDto)
 				.toList();
 	}
-
-	@Override
-	public void addUser(UserDto userDto) {
-		User user = userMapper.toEntity(userDto);
-		userRepository.save(user);
-		userRepository.flush();
-	}
 	
 	@Override
 	public void addUser(String userName, String password, Integer userRole, Boolean status) {
-		UserDto userDto = new UserDto(userName, password , userRole,status);
-		addUser(userDto);
+		String salt = Hash.getSalt();
+		String passwordHash = Hash.getHash(password, salt);
+		User user = new User(userName, passwordHash,salt , userRole,status);
+		userRepository.save(user);
 	}
 
 	@Override
