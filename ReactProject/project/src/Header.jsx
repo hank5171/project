@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Menu, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom' 
 
+const API_BASE = 'http://localhost:8081/'
+
 export default class Header extends Component {
   state = { activeItem: '首頁' }
 
@@ -34,7 +36,7 @@ export default class Header extends Component {
           to='/menuHistory'
         />
           <Menu.Item position='right'>
-            <Button primary as={Link} to='/signin'>註冊/登入</Button>
+            <Button primary as={Link} to='/login'>登入</Button>
           </Menu.Item>
       
       </Menu>
