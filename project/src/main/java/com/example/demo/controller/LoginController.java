@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +23,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/")
-@CrossOrigin(origins = {"http://localhost:8002","http://localhost:5174"}, allowCredentials = "true") // allowCredentials = "true" 允許接收客戶端傳來的憑證資料,例如: session id
+@CrossOrigin(origins = {"http://localhost:8002","http://localhost:5173"}, allowCredentials = "true") // allowCredentials = "true" 允許接收客戶端傳來的憑證資料,例如: session id
 public class LoginController {
 	
 	@Autowired
@@ -70,10 +73,26 @@ public class LoginController {
 		session.invalidate();
 		return ResponseEntity.ok(ApiResponse.success("登出成功", null ));
 	}
-	
+	/**
 	@GetMapping("/check-login")
 	public ResponseEntity<ApiResponse<Boolean>> checkLogin(HttpSession session){
 		boolean loggedIn = session.getAttribute("userCert") != null;
 	    return ResponseEntity.ok(ApiResponse.success("檢查登入", loggedIn));
+	}
+	 */
+	
+	@GetMapping("/check-login")
+	public ResponseEntity<Map<String, Object>> checkLogin(HttpSession session) {
+	    Map<String, Object> response = new HashMap<>();
+	    Object userObj = session.getAttribute("userCert");
+
+	    if (userObj instanceof UserCert userCert) {
+	        response.put("status", true);
+	        response.put("username", userCert.getUsername());
+	        response.put("role", userCert.getRole());
+	    } else {
+	        response.put("status", false);
+	    }
+	    return ResponseEntity.ok(response);
 	}
 }
