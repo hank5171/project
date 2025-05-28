@@ -75,6 +75,7 @@ public class User {
 		this.username = userName;
 		this.passwordSalt = passwordSalt;
 		this.password = password;
+		this.status = status;
 		this.userRole = userRole;
 		this.status = status;
 	}

@@ -15,7 +15,7 @@ public class AuthFilter implements Filter {
         String path = request.getRequestURI();
 
         // 白名單（不需要登入）
-        if (path.equals("/login") || path.startsWith("/static") || path.startsWith("/assets") || path.startsWith("/check-login")) {
+        if (path.equals("/login") || path.startsWith("/check-login")) {
             chain.doFilter(req, res);
             return;
         }

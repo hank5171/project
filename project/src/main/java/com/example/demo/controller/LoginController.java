@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,8 @@ import com.example.demo.response.ApiResponse;
 import com.example.demo.service.CertService;
 
 import jakarta.servlet.http.HttpSession;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j // 紀錄log
 @Controller
 @RequestMapping("/")
 @CrossOrigin(origins = {"http://localhost:8002","http://localhost:5173"}, allowCredentials = "true") // allowCredentials = "true" 允許接收客戶端傳來的憑證資料,例如: session id
@@ -28,6 +30,7 @@ public class LoginController {
 	
 	@Autowired
 	private CertService certService;
+	
 	// 登入系統
 	@PostMapping("/login")
 	public ResponseEntity<ApiResponse<Void>> login(@RequestParam String username, @RequestParam String password, HttpSession session){
@@ -35,6 +38,8 @@ public class LoginController {
 		try {
 			UserCert userCert = certService.getCert(username, password);
 			session.setAttribute("userCert",userCert);
+			System.out.println(userCert);
+			log.info("登入成功: user={} roleId={}", username, userCert.getRole() == 1 ? "管理員" : "一般使用者" );
 			return ResponseEntity.ok(ApiResponse.success("登入成功", null));
 		} catch (CertException e) {
 			return ResponseEntity
@@ -65,11 +70,14 @@ public class LoginController {
 	// 登出系統
 	@GetMapping("/logout")
 	public ResponseEntity<ApiResponse<Void>> logout(HttpSession session){
+	    Object certObj = session.getAttribute("userCert"); // 存取session資料
 		if (session.getAttribute("userCert") == null) {
 			return ResponseEntity
 					.status(HttpStatus.UNAUTHORIZED)
 					.body(ApiResponse.error(401, "登出失敗: 尚未登入"));
 		}
+		UserCert cert = (UserCert) certObj; // 轉為UserCert型態
+		log.info("登出成功: user={}",cert.getUsername()); // 紀錄log
 		session.invalidate();
 		return ResponseEntity.ok(ApiResponse.success("登出成功", null ));
 	}
@@ -87,8 +95,8 @@ public class LoginController {
 	    Object userObj = session.getAttribute("userCert");
 
 	    if (userObj instanceof UserCert userCert) {
-	        response.put("status", true);
 	        response.put("username", userCert.getUsername());
+	        response.put("status", userCert.getStatus());
 	        response.put("role", userCert.getRole());
 	    } else {
 	        response.put("status", false);
