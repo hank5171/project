@@ -37,8 +37,11 @@ function Home() {
     <Container textAlign="center" style={{ marginTop: '5em' }}>
       {isLoggedIn ? (
         <>
-          <Header as="h2">歡迎，{username}！</Header>
-          <p>這是首頁</p>
+          <Header as="h2">{username} 歡迎使用點餐系統</Header>
+          <Message info>
+            <Message.Header>系統資訊</Message.Header>
+            <p>這裡可以顯示一些系統的最新消息或提示。</p>
+          </Message>
         </>
       ) : (
         <Message warning>

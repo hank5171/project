@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Segment, Header, Icon, Message } from 'semantic-ui-react';
 import './css/login.css'; // 你可以用這個放額外CSS
 const API_BASE = 'http://localhost:8081';
 
 function Login() {
+  const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState({ username: '', password: '' });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   useEffect(() => {
     checkLoginStatus();
   }, []);
@@ -31,6 +32,7 @@ function Login() {
     setLoginForm((prev) => ({ ...prev, [name]: value }));
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -44,12 +46,16 @@ function Login() {
       if (res.ok && data.status === 200) {
         setIsLoggedIn(true);
         alert('登入成功');
+        navigate('/home'); // 使用 navigate 取代 window.location.href
         // 導向首頁
-        window.location.href = '/home';
+        console.log(data)
       } else {
-        alert('登入失敗：' + data.message);
+        // 調出錯誤視窗
+        alert(data.message);
       }
     } catch (err) {
+      // 顯示錯誤訊息
+      alert('登入失敗，請檢查帳號密碼是否正確');
       console.error('登入錯誤', err);
     }
   };
