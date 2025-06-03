@@ -38,6 +38,7 @@ public class LoginController {
 		try {
 			UserCert userCert = certService.getCert(username, password);
 			session.setAttribute("userCert",userCert);
+			session.setAttribute("userId", userCert.getUserId());
 			System.out.println(userCert);
 			log.info("登入成功: user={} roleId={}", username, userCert.getRole() == 1 ? "管理員" : "一般使用者" );
 			return ResponseEntity.ok(ApiResponse.success("登入成功", null));
