@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Home from "./Home";
 import Login from "./login";
-import MenuOrder from "./MenuOrder";
+import OrderList from "./OrderList";
 import ProtectedRoute from "./ProtectedRoute";
+import UserCreateForm from "./UserCreateForm";
+import MenuHistory from "./MenuHistory";
 
 function App() {
   const location = useLocation();
@@ -41,12 +43,12 @@ function App() {
         } />
         <Route path="/menu" element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <MenuOrder />
+            <OrderList />
           </ProtectedRoute>
         } />
         <Route path="/menuHistory" element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <h1>訂單紀錄</h1>
+            <MenuHistory />
           </ProtectedRoute>
         } />
         <Route path="/menuManagement" element={
@@ -56,7 +58,7 @@ function App() {
         } />
         <Route path="/addUser" element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <h1>新增使用者</h1>
+            <UserCreateForm/>
           </ProtectedRoute>
         } />
         <Route path="/menuPost" element={
