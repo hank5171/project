@@ -1,23 +1,17 @@
 package com.example.demo.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.entity.MenuItems;
-import com.example.demo.model.entity.Order;
-import com.example.demo.repository.OrderRepository;
-import com.example.demo.response.ApiResponse;
-import com.example.demo.service.MenuItemsService;
-import com.example.demo.service.OrderService;
-
-import jakarta.servlet.http.HttpSession;
+import com.example.demo.model.dto.UserRequest;
+import com.example.demo.model.entity.Role;
+import com.example.demo.repository.RoleRepository;
+import com.example.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,17 +19,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Slf4j
 @RestController
-@RequestMapping("/menu")
+@RequestMapping("/user")
 @CrossOrigin(origins = {"http://localhost:8002","http://localhost:5173"}, allowCredentials = "true") // allowCredentials = "true" 允許接收客戶端傳來的憑證資料,例如: session id
-public class MenuController {
+public class UserController {
 	
+	@Autowired UserService userService;
+
 	@Autowired
-	private MenuItemsService menuItemsService;
+	private RoleRepository roleRepository;
+	// 取得所有職位
 	
-	// 取得菜單內容
-	@GetMapping
-	public ResponseEntity<List<MenuItems>> getMenuItemsList(){
-		List<MenuItems> menuItems = menuItemsService.getMenuItems();
-		return ResponseEntity.ok(menuItems);
+	@GetMapping("/role")
+	public ResponseEntity<List<Role>> getAllRole(){
+		List<Role> roles = roleRepository.getAllRole();
+		return ResponseEntity.ok(roles);
 	}
+	
+    @PostMapping("/add")
+    public void addUser(@RequestBody UserRequest request) {
+    	userService.addUser(request.getUsername(),
+    						request.getPassword(),
+    						request.getUserRole(), 
+    						request.getStatus());
+    }
 }

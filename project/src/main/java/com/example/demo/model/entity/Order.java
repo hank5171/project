@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -39,6 +41,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "orders")  // 避免使用保留字
 public class Order {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id")
 	private Integer orderId;
 	
@@ -57,5 +60,13 @@ public class Order {
 
     @Column(name = "updated_at") 
 	private LocalDateTime updated_at;
+    
+
+	public Order(Integer userId, Integer menuId, Integer quantity,String customized) {
+		this.userId = userId;
+		this.menuId = menuId;
+		this.quantity = quantity;
+		this.customized = customized;
+	}
 	
 }

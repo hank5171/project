@@ -95,6 +95,7 @@ public class LoginController {
 	    Object userObj = session.getAttribute("userCert");
 
 	    if (userObj instanceof UserCert userCert) {
+	    	response.put("userId", userCert.getUserId());
 	        response.put("username", userCert.getUsername());
 	        response.put("status", userCert.getStatus());
 	        response.put("role", userCert.getRole());

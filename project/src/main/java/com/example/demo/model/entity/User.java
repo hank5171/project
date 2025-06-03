@@ -77,6 +77,5 @@ public class User {
 		this.password = password;
 		this.status = status;
 		this.userRole = userRole;
-		this.status = status;
 	}
 }
