@@ -26,7 +26,7 @@ function MenuHistory() {
       });
   }, []);
 
-  return (
+    return (
     <Container>
       <Segment>
         <Header as='h2' icon textAlign='center'>
@@ -50,23 +50,36 @@ function MenuHistory() {
           <Table celled striped>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>訂單編號</Table.HeaderCell>
-                <Table.HeaderCell>餐點 ID</Table.HeaderCell>
+                <Table.HeaderCell>餐點名稱</Table.HeaderCell>
                 <Table.HeaderCell>數量</Table.HeaderCell>
+                <Table.HeaderCell>價格</Table.HeaderCell>
                 <Table.HeaderCell>備註</Table.HeaderCell>
                 <Table.HeaderCell>建立時間</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {orders.map(order => (
-                <Table.Row key={order.orderId}>
-                  <Table.Cell>{order.orderId}</Table.Cell>
-                  <Table.Cell>{order.menuId}</Table.Cell>
-                  <Table.Cell>{order.quantity}</Table.Cell>
-                  <Table.Cell>{order.customized || '無'}</Table.Cell>
-                  <Table.Cell>{new Date(order.created_at).toLocaleString()}</Table.Cell>
-                </Table.Row>
-              ))}
+              {orders.map((orderArray, index) => {
+                const [
+                  name, 
+                  description,
+                  quantity,
+                  price,
+                  customized,
+                  createdAt
+                ] = orderArray;
+                
+                return (
+                  <Table.Row key={index}>
+                    <Table.Cell>{name}</Table.Cell>
+                    <Table.Cell>{quantity}</Table.Cell>
+                    <Table.Cell>${price}</Table.Cell>
+                    <Table.Cell>{customized || '無'}</Table.Cell>
+                    <Table.Cell>
+                      {new Date(createdAt).toLocaleString()}
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              })}
             </Table.Body>
           </Table>
         )}
@@ -74,5 +87,6 @@ function MenuHistory() {
     </Container>
   );
 }
+
 
 export default MenuHistory;
