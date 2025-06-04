@@ -4,16 +4,24 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.example.demo.exception.OrderNotFoundException;
+import com.example.demo.exception.PermissionDeniedException;
+import com.example.demo.model.dto.OrderDto;
 import com.example.demo.model.entity.Order;
 import com.example.demo.repository.OrderRepository;
+import com.example.demo.response.ApiResponse;
 import com.example.demo.service.OrderService;
 
 import jakarta.servlet.http.HttpSession;
@@ -40,12 +48,12 @@ public class OrderController {
     }
     
     @GetMapping("/menuHistory")
-    public ResponseEntity<List<Order>> getMyOrders(HttpSession session){
+    public ResponseEntity<List<Object[]>> getMyOrders(HttpSession session){
     	 Object userIdObj = session.getAttribute("userId");
 
          Integer userId = (Integer) userIdObj;
 
-         List<Order> orders = orderRepository.findByUserId(userId);
+         List<Object[]> orders = orderRepository.findOrderDetailsByUserId(userId);
 
          return ResponseEntity.ok(orders);
      }

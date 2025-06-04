@@ -10,6 +10,9 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.util.Hash;
 
+import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 	
@@ -19,14 +22,16 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
+	//找所有使用者
 	@Override
-	public List<UserDto> findAllUser() { //找所有使用者
+	public List<UserDto> findAllUser() { 
 		return userRepository.findAll()
 				.stream()
 				.map(userMapper::toDto)
 				.toList();
 	}
 	
+	//新增使用者
 	@Override
 	public void addUser(String userName, String password, Integer userRole, Boolean status) {
 		String salt = Hash.getSalt();
@@ -52,6 +57,4 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		
 	}
-	
-
 }

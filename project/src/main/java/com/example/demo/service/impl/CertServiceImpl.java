@@ -1,6 +1,8 @@
 package com.example.demo.service.impl;
 
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,8 @@ public class CertServiceImpl implements CertService{
 		if(!passwordHash.equals(user.getPassword())) {
 			throw new CertException("密碼錯誤");
 		}
+		user.setLastLoginTime(LocalDateTime.now());
+		userRepository.save(user);
 		// 3. 簽發憑證
 		UserCert userCert = new UserCert(user.getUserId(), user.getUsername(), user.getUserRole(), user.getStatus(),user.getIsDeleted());
 		return userCert;	

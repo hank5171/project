@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.example.demo.model.dto.UserDto;
 
+import jakarta.servlet.http.HttpSession;
+
 public interface UserService {
 	public List<UserDto> findAllUser(); // 查詢所有使用者
 	public void addUser(String userName, String password, Integer userRole, Boolean status);  // 添加使用者
