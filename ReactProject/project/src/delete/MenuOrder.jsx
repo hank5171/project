@@ -7,7 +7,7 @@ function MenuOrder() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/user-list`, { credentials: 'include' })
+    fetch(`${API_BASE}/user/list`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {

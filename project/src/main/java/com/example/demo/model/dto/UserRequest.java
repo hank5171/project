@@ -8,10 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserRequest {
+	private Integer userId;
     private String username;
     private String password;
     private Integer userRole;
     private Boolean status;
+    private Boolean isDeleted;
     // Getters / Setters
 }
 

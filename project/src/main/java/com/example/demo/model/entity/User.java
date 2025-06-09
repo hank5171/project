@@ -68,7 +68,7 @@ public class User {
 	@Column(name = "updated_at", insertable = false, updatable = false)
 	private LocalDateTime updatedAt;
 
-	@Column(name = "is_deleted", insertable = false, updatable = false)
+	@Column(name = "is_deleted", insertable = false)
 	private Boolean isDeleted;
 
 	public User(String userName, String password, String passwordSalt, Integer userRole, Boolean status) {

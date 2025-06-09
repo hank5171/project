@@ -100,7 +100,7 @@ function HeaderBar() {
       <Menu.Menu position='right'>
           <>
             <Menu.Item>
-              <span style={{ marginRight: '1em' }}>{ isAdmin === 1 ? '管理員:' : '使用者:' }{username}</span>
+              <span style={{ marginRight: '1em' }}>{ '管理員:' }{username}</span>
               <Button onClick={handleLogoutSubmit} color='red'>登出</Button>
             </Menu.Item>
           </>
@@ -140,7 +140,7 @@ function HeaderBar() {
         <Menu.Menu position='right'>
           <>
             <Menu.Item>
-              <span style={{ marginRight: '1em' }}>{ isAdmin === 1 ? '管理員:' : '使用者:' }{username}</span>
+              <span style={{ marginRight: '1em' }}>{ '使用者:' }{username}</span>
               <Button onClick={handleLogoutSubmit} color='red'>登出</Button>
             </Menu.Item>
           </>

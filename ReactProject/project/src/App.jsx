@@ -5,7 +5,7 @@ import Home from "./Home";
 import Login from "./login";
 import OrderList from "./OrderList";
 import ProtectedRoute from "./ProtectedRoute";
-import UserCreateForm from "./UserCreateForm";
+import UserCreate from "./UserCreate";
 import MenuHistory from "./MenuHistory";
 
 function App() {
@@ -99,7 +99,7 @@ function App() {
           path="/addUser"
           element={
             <Guard>
-              <UserCreateForm />
+              <UserCreate />
             </Guard>
           }
         />
@@ -111,6 +111,7 @@ function App() {
             </Guard>
           }
         />
+        
 
         {/* 其他未定義路徑自動導向登入或首頁 */}
         <Route
