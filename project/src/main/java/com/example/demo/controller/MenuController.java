@@ -38,4 +38,12 @@ public class MenuController {
 		List<MenuItems> menuItems = menuItemsService.getMenuItems();
 		return ResponseEntity.ok(menuItems);
 	}
+	
+	// 新增菜單內容
+	@PostMapping("/add")
+	public ResponseEntity<MenuItems> addMenuItemsList(){
+		
+		
+		return null;
+	}
 }

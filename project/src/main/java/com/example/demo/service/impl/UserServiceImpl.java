@@ -3,16 +3,14 @@ package com.example.demo.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.exception.UserException;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.entity.User;
+import com.example.demo.model.entity.UserUpdateRequest;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.util.Hash;
-
-import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -54,15 +52,44 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateUser(Integer userId, UserDto userDto) {
-		// TODO Auto-generated method stub
+	public UserDto updateUser(Integer userId, UserDto userDto) {
 		
+		return null;
 	}
 
 	@Override
-	public void updateUser(Integer userId, String userName, String password, Integer userRole, Boolean status) {
-		// TODO Auto-generated method stub
-		
+	public UserDto updateUser(Integer userId, String userName, String password, Integer userRole, Boolean status) {
+		User user = userRepository.findByUserId(userId);
+		String salt = user.getPasswordSalt();
+		String passwordHash = Hash.getHash(password, salt);
+		user.setPassword(passwordHash);
+		user.setUserRole(userRole);
+		user.setStatus(status);
+		userRepository.save(user);
+		return userMapper.toDto(user);
+	}
+	
+	@Override
+	public UserDto updateUser(UserUpdateRequest req) throws UserException{
+	    User user = userRepository.findByUserId(req.getUserId());
+	    if (user == null) throw new UserException("查無此人");
+
+	    if (req.getUsername() != null) {
+	        user.setUsername(req.getUsername());
+	    }
+	    if (req.getPassword() != null && !req.getPassword().isEmpty()) {
+	        String salt = user.getPasswordSalt();
+	        String passwordHash = Hash.getHash(req.getPassword(), salt);
+	        user.setPassword(passwordHash);
+	    }
+	    if (req.getUserRole() != null) {
+	        user.setUserRole(req.getUserRole());
+	    }
+	    if (req.getStatus() != null) {
+	        user.setStatus(req.getStatus());
+	    }
+	    userRepository.save(user);
+	    return userMapper.toDto(user);
 	}
 	
 	@Override

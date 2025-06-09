@@ -32,6 +32,10 @@ import lombok.NoArgsConstructor;
 		ON DELETE RESTRICT
 		ON UPDATE CASCADE
 ) COMMENT='訂單總表';
+
+ALTER TABLE orders
+ADD COLUMN price INT NOT NULL AFTER quantity,
+ADD COLUMN total_price INT NOT NULL AFTER price;
  **/
 
 @Data
@@ -52,6 +56,11 @@ public class Order {
 	private Integer menuId;
 	
 	private Integer quantity;
+	
+	private Integer price;
+	
+	@Column(name = "total_price")
+	private Integer totalPrice;
 	
 	private String customized;
 	

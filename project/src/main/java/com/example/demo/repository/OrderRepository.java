@@ -15,11 +15,8 @@ import com.example.demo.model.entity.User;
 public interface OrderRepository extends JpaRepository<Order, Integer> { // User: entity, Integer: @Id 的類別
 	List<Order> findByUserId(Integer userId);
 	
-	@Query(value = "SELECT b.name, b.description, a.quantity, b.price, a.customized, a.created_at " +
-            "FROM orders a " +
-            "LEFT JOIN menu_items b ON a.menu_id = b.menu_id " +
-            "WHERE a.user_id = :userId", 
-    nativeQuery = true)
+	@Query(value = "SELECT b.name, b.description, a.quantity, a.price, a.total_price, a.customized, a.created_at FROM orders a LEFT JOIN menu_items b ON a.menu_id = b.menu_id WHERE a.user_id =:userId"
+    ,nativeQuery = true)
 	List<Object[]> findOrderDetailsByUserId(@Param("userId") Integer userId);
 	
 }

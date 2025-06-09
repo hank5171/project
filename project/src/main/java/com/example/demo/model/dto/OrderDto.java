@@ -14,6 +14,8 @@ public class OrderDto {
 	private Integer userId;
 	private Integer menuId;
 	private Integer quantity;
+	private Integer price;
+	private Integer totalPrice;
 	private String customized;
 	private LocalDateTime created_at;
 	private LocalDateTime updated_at;

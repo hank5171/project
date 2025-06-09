@@ -41,6 +41,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<?> createOrder(@RequestBody Order order) {
+    	order.setTotalPrice(order.getTotalPrice());
         order.setCreated_at(LocalDateTime.now());
         order.setUpdated_at(LocalDateTime.now());
         Order saved = orderService.createOrder(order);

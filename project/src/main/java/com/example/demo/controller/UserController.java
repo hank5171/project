@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.demo.exception.UserException;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.dto.UserDto;
-import com.example.demo.model.dto.UserRequest;
 import com.example.demo.model.entity.Role;
 import com.example.demo.model.entity.User;
+import com.example.demo.model.entity.UserRequest;
+import com.example.demo.model.entity.UserUpdateRequest;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.UserService;
 import com.example.demo.service.impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -60,9 +63,26 @@ public class UserController {
     	return ResponseEntity.ok(users);
     }
     
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Integer userId) throws UserException{
     	userService.deleteUser(userId);
         return ResponseEntity.noContent().build(); // 204 No Content
     }    
+    
+//    @PutMapping("/update")
+//    public ResponseEntity<UserDto> updateUser(@RequestBody UserRequest request){
+//    	UserDto userDto = userService.updateUser(request.getUserId(), request.getUsername(), request.getPassword(), request.getUserRole(), request.getStatus());
+//    	return ResponseEntity.ok(userDto);
+//    }
+    
+    @PutMapping("/update")
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserUpdateRequest req) {
+        UserDto userDto = null;
+		try {
+			userDto = userService.updateUser(req);
+		} catch (UserException e) {
+			e.printStackTrace();
+		}
+        return ResponseEntity.ok(userDto);
+    }
 }
