@@ -4,7 +4,7 @@ import { Dropdown, Form, Input, Button, Container, Header, TextArea, Table, Mess
 const MenuManagement = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [menuList, setMenuList] = useState([]);
-  const [restaurantName, setRestaurantName] = useState('');
+  const [shopName, setshopName] = useState('');
   const [menuName, setMenuName] = useState('');
   const [price, setPrice] = useState('');
   const [status, setStatus] = useState(true);
@@ -25,7 +25,7 @@ const MenuManagement = () => {
 
   // 取得菜單
   const fetchMenu = () => {
-    fetch('http://localhost:8081/menu', {
+    fetch('http://localhost:8081/menu/List', {
       credentials: 'include',
     })
       .then((res) => res.json())
@@ -34,10 +34,10 @@ const MenuManagement = () => {
         const MenuList = activeItems.map(item => ({
           key: item.menuId,
           value: item.menuId,
-          text: `${item.name}`,
+          text: `${item.menuName}`,
           price: item.price,
           status: item.status ? '上架' : '下架',
-          restaurantName: item.restaurantName,
+          shopName: item.shopName,
         }));
         setMenuList(MenuList);
       });
@@ -71,7 +71,7 @@ const MenuManagement = () => {
       });
       if (res.ok) {
         setSuccessMsg('新增菜單成功！');
-        setRestaurantName('');
+        setshopName('');
         setMenuName('');
         setPrice('');
         setStatus(true);
@@ -96,8 +96,8 @@ const MenuManagement = () => {
             <label>餐廳名稱</label>
             <Input
               placeholder="請輸入餐廳名稱"
-              value={restaurantName}
-              onChange={e => setRestaurantName(e.target.value)}
+              value={shopName}
+              onChange={e => setshopName(e.target.value)}
             />
           </Form.Field>
           <Form.Field required>
@@ -158,7 +158,7 @@ const MenuManagement = () => {
         <Table.Body>
           {menuList.map((item) => (
             <Table.Row key={item.value}>
-              <Table.Cell>{item.restaurantName}</Table.Cell>
+              <Table.Cell>{item.shopName}</Table.Cell>
               <Table.Cell>{item.text}</Table.Cell>
               <Table.Cell>${item.price}</Table.Cell>
               <Table.Cell>{item.status}</Table.Cell>
