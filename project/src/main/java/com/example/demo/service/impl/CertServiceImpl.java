@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.CertException;
-import com.example.demo.model.dto.UserCert;
 import com.example.demo.model.entity.User;
+import com.example.demo.model.entity.UserCert;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CertService;
 import com.example.demo.util.Hash;

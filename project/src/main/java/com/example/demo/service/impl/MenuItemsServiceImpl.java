@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.entity.MenuItems;
 import com.example.demo.repository.MenuItemsRepository;
 import com.example.demo.service.MenuItemsService;
@@ -20,5 +21,8 @@ public class MenuItemsServiceImpl implements MenuItemsService {
 	public List<MenuItems> getMenuItems() {
 		return menuItemsRepository.getAllMenuList();
 	}
-
+	
+	public List<MenuItemWithShopDTO> findAllMenuWithShop(){
+		return menuItemsRepository.findAllMenuWithShop();
+	}
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.entity.MenuItems;
 import com.example.demo.model.entity.Order;
 import com.example.demo.repository.OrderRepository;
@@ -39,9 +40,17 @@ public class MenuController {
 		return ResponseEntity.ok(menuItems);
 	}
 	
+	// 取得菜單列表
+	@GetMapping("/List")
+	public ResponseEntity<List<MenuItemWithShopDTO>> getMenuItemsShopList(){
+		List<MenuItemWithShopDTO> menuItemWithShopDTOs = menuItemsService.findAllMenuWithShop();
+		return ResponseEntity.ok(menuItemWithShopDTOs);
+	}
+
+	
 	// 新增菜單內容
 	@PostMapping("/add")
-	public ResponseEntity<MenuItems> addMenuItemsList(){
+	public ResponseEntity<MenuItemWithShopDTO> addMenuItemsList(){
 		
 		
 		return null;
