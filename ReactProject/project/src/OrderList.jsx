@@ -32,6 +32,7 @@ const OrderList = () => {
           key: item.menuId,
           value: item.menuId,
           text: `${item.name} - ${item.description} - $${item.price}`,
+          price: item.price, // 儲存價格以便計算總價
         }));
         setMenuOptions(options);
       });
@@ -43,10 +44,16 @@ const OrderList = () => {
       return;
     }
 
+    const menuItem = menuOptions.find(item => item.value === selectedMenuId);
+    const price = menuItem ? parseInt(menuItem.price) : 0;
+    const totalPrice = price * parseInt(quantity);
+
     const payload = {
       userId: userInfo.userId,
       menuId: selectedMenuId,
       quantity: parseInt(quantity),
+      price: price,
+      totalPrice: totalPrice,
       customized: customized,
     };
 
@@ -71,9 +78,13 @@ const OrderList = () => {
         setCustomized('');
       } else {
         alert(`送出失敗：${data.message}`);
+        console.log(menuOptions.find(item => item.value === selectedMenuId));
+
       }
     } catch (err) {
       alert('送出錯誤：' + err.message);
+      console.log(menuOptions.find(item => item.value === selectedMenuId));
+
     }
   };
 

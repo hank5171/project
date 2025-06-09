@@ -27,6 +27,7 @@ const UserCreateForm = () => {
   const [open, setOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false)  
   // 表單狀態
+  const [editingUserId, setEditingUserId] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [userRole, setUserRole] = useState('');
@@ -124,11 +125,8 @@ const UserCreateForm = () => {
   
   // 送出修改表單
   const updateSubmit = async () => {
-    if (!username || !password || userRole === '') {
-      alert('請填寫所有欄位');
-      return;
-    }
     const updatepayload = {
+      userId: editingUserId, // 假設你有一個 state 儲存正在編輯的使用者ID
       username,
       password,
       userRole,
@@ -140,7 +138,7 @@ const UserCreateForm = () => {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify(payload)
+        body: JSON.stringify(updatepayload)
       });
 
       const text = await res.text();
@@ -181,6 +179,32 @@ const UserCreateForm = () => {
     });
   };
 
+  // 刪除使用者
+  const handleDelete = async (userId) => {
+    if (!window.confirm('確定要刪除這個使用者嗎？')) return;
+
+    try {
+      const res = await fetch(`${API_BASE}/user/${userId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      });
+
+      const text = await res.text();
+      const data = text ? JSON.parse(text) : {};
+
+      if (res.ok) {
+        alert('使用者刪除成功');
+        fetchUsers(); // 刪除後刷新列表
+      } else {
+        alert(`刪除失敗：${data.message || '未知錯誤'}`);
+      }
+    } catch (error) {
+      console.error('刪除使用者時發生錯誤:', error);
+      alert('刪除使用者失敗，請稍後再試');
+    }
+  };
+
   return (
     <Container style={{ marginTop: '2em' }}>
       <Header as="h2">使用者管理</Header>
@@ -198,14 +222,25 @@ const UserCreateForm = () => {
         <Modal.Content>
           <Form onSubmit={updateSubmit}>
             <Form.Field>
+              <label>使用者ID</label>
+              <Input
+                type="text"
+                maxLength={10}
+                placeholder="請輸入使用者ID"
+                value={editingUserId}
+                disabled
+                readOnly
+              />
+            </Form.Field>
+            <Form.Field>
               <label>使用者名稱</label>
               <Input
                 type="text"
                 maxLength={10}
                 placeholder="請輸入使用者名稱"
-                value={users.username}
+                value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                disabled
+                disabled  
                 readOnly
               />
             </Form.Field>
@@ -239,7 +274,14 @@ const UserCreateForm = () => {
               />
             </Form.Field>
             <Button type="submit" color="green">修改使用者</Button>
-            <Button type="button" color="grey" onClick={() => {setOpen(false);setUpdateOpen(false)}}>取消</Button>
+            <Button type="button" color="grey" onClick={() => {setOpen(false);
+              setUpdateOpen(false)
+              setUsername('');      // 帶入使用者名稱
+              setUserRole('');      // 帶入角色
+              setStatus('');          // 帶入狀態
+              setPassword('');                 // 密碼欄位通常留空，讓管理員自行輸入新密碼
+              setEditingUserId(''); }  // 若你需要傳 userId 給後端
+              }>取消</Button>
           </Form>
         </Modal.Content>
       </Modal>
@@ -307,6 +349,7 @@ const UserCreateForm = () => {
         <Table compact celled>
           <Table.Header>
             <Table.Row>
+              <Table.HeaderCell>使用者ID</Table.HeaderCell>
               <Table.HeaderCell>使用者姓名</Table.HeaderCell>
               <Table.HeaderCell>使用者權限</Table.HeaderCell>
               <Table.HeaderCell>狀態</Table.HeaderCell>
@@ -319,6 +362,7 @@ const UserCreateForm = () => {
           <Table.Body>
             {users.map(user => (
               <Table.Row key={user.userId}>
+                <Table.Cell>{user.userId}</Table.Cell>
                 <Table.Cell>{user.userName}</Table.Cell>
                 <Table.Cell>{getRoleName(user.userRole)}</Table.Cell>
                 <Table.Cell>
@@ -334,12 +378,17 @@ const UserCreateForm = () => {
                     onClick={() => {
                       setOpen(true);
                       setUpdateOpen(true);
+                      setUsername(user.userName);      // 帶入使用者名稱
+                      setUserRole(user.userRole);      // 帶入角色
+                      setStatus(user.status);          // 帶入狀態
+                      setPassword('');                 // 密碼欄位通常留空，讓管理員自行輸入新密碼
+                      setEditingUserId(user.userId);   // 若你需要傳 userId 給後端
                     }}>
                     修改
-                </Button>
+                  </Button>
                 </Table.Cell>
                 <Table.Cell>
-                  <Button basic color="red">刪除</Button>
+                  <Button basic color="red" onClick={() => handleDelete(user.userId)}>刪除</Button>
                 </Table.Cell>
               </Table.Row>
             ))}

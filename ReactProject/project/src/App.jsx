@@ -7,7 +7,7 @@ import OrderList from "./OrderList";
 import ProtectedRoute from "./ProtectedRoute";
 import UserCreate from "./UserCreate";
 import MenuHistory from "./MenuHistory";
-
+import MenuManagement from "./MenuManagement"; 
 function App() {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -91,7 +91,7 @@ function App() {
           path="/menuManagement"
           element={
             <Guard>
-              <>123</>
+              <MenuManagement />
             </Guard>
           }
         />

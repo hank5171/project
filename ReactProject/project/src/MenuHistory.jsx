@@ -52,7 +52,8 @@ function MenuHistory() {
               <Table.Row>
                 <Table.HeaderCell>餐點名稱</Table.HeaderCell>
                 <Table.HeaderCell>數量</Table.HeaderCell>
-                <Table.HeaderCell>價格</Table.HeaderCell>
+                <Table.HeaderCell>單價</Table.HeaderCell>
+                <Table.HeaderCell>總價格</Table.HeaderCell>
                 <Table.HeaderCell>備註</Table.HeaderCell>
                 <Table.HeaderCell>建立時間</Table.HeaderCell>
               </Table.Row>
@@ -64,6 +65,7 @@ function MenuHistory() {
                   description,
                   quantity,
                   price,
+                  totalPrice,
                   customized,
                   createdAt
                 ] = orderArray;
@@ -73,6 +75,7 @@ function MenuHistory() {
                     <Table.Cell>{name}</Table.Cell>
                     <Table.Cell>{quantity}</Table.Cell>
                     <Table.Cell>${price}</Table.Cell>
+                    <Table.Cell>${totalPrice}</Table.Cell>
                     <Table.Cell>{customized || '無'}</Table.Cell>
                     <Table.Cell>
                       {new Date(createdAt).toLocaleString()}
