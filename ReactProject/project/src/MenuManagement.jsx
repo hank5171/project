@@ -11,10 +11,14 @@ const MenuManagement = () => {
   const [description, setDescription] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+  const [updateOpen, setUpdateOpen] = useState(false);
+  const [menuId, setMenuId] = useState('');
+  const [shopOptions, setShopOptions] = useState([]);
+  const API_URL = 'http://localhost:8081';
 
   // 取得使用者資訊
   useEffect(() => {
-    fetch('http://localhost:8081/check-login', {
+    fetch(`${API_URL}/check-login`, {
       credentials: 'include',
     })
       .then(res => res.json())
@@ -25,16 +29,18 @@ const MenuManagement = () => {
 
   // 取得菜單
   const fetchMenu = () => {
-    fetch('http://localhost:8081/menu/List', {
+    fetch(`${API_URL}/menu/List`, {
       credentials: 'include',
     })
       .then((res) => res.json())
       .then((data) => {
-        const activeItems = data.filter(item => item.status === true);
-        const MenuList = activeItems.map(item => ({
+        // const activeItems = data.filter(item => item.status === true); // 只顯示上架的菜單
+        // const MenuList = activeItems.map(item => ({
+        const MenuList = data.map(item => ({
           key: item.menuId,
           value: item.menuId,
           text: `${item.menuName}`,
+          description: item.description,
           price: item.price,
           status: item.status ? '上架' : '下架',
           shopName: item.shopName,
@@ -42,9 +48,29 @@ const MenuManagement = () => {
         setMenuList(MenuList);
       });
   };
+  // 取得餐廳列表
+  const fetchShops = () => {
+    fetch(`${API_URL}/shop`, {
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const ShopOptions = data.map(item => ({
+          key: item.shopId,
+          value: item.shopName,
+          text: item.shopName
+        }));
+        console.log(ShopOptions);
+        setShopOptions(ShopOptions);
+      });
+  };
 
   useEffect(() => {
     fetchMenu();
+  }, []);
+
+  useEffect(() => {
+    fetchShops();
   }, []);
 
   // 新增菜單表單送出
@@ -63,7 +89,7 @@ const MenuManagement = () => {
       description
     };
     try {
-      const res = await fetch('http://localhost:8081/menu/add', {
+      const res = await fetch(`${API_URL}/menu/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -86,19 +112,111 @@ const MenuManagement = () => {
     }
   };
 
+  // // 下架菜單
+  // const handleRemove = async (item) => {
+  //   fetch(`${API_URL}/menu/${item.value}`, {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     credentials: 'include',
+  //     body: JSON.stringify({ menuId: item.value })
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.success) {
+  //         setSuccessMsg('菜單已下架');
+  //         fetchMenu(); // 重新載入菜單
+  //       } else {
+  //         setErrorMsg(data.message || '下架失敗');
+  //       }
+  //     })
+  //     .catch(() => {
+  //       console.error(item);
+  //       setErrorMsg('系統錯誤，請稍後再試');
+  //     });
+  // }
+  const handleRemove = async (item) => {
+  fetch(`${API_URL}/menu/${item.value}`, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  credentials: 'include',
+  body: JSON.stringify({ menuId: item.value })
+})
+  .then(res => {
+    if (!res.ok) {
+      throw new Error('HTTP error ' + res.status);
+    }
+    // 只處理有內容的情況
+    return res.headers.get('content-length') === '0' || res.status === 204
+      ? null
+      : res.json();
+  })
+  .then(data => {
+    if (!data) {
+      setSuccessMsg('菜單已下架');
+      fetchMenu();
+      return;
+    }
+    if (data.success) {
+      setSuccessMsg('菜單已下架');
+      fetchMenu();
+    } else {
+      setErrorMsg(data.message || '下架失敗');
+    }
+  })
+  .catch(() => {
+    setErrorMsg('系統錯誤，請稍後再試');
+  })};
+
+
+  const handleEdit = (item) => {
+    setMenuId(item.value);
+    setshopName(item.shopName);
+    setMenuName(item.text);
+    setPrice(item.price);
+    setStatus(item.status === '上架');
+    setDescription(item.description || '');
+    setUpdateOpen(true);
+  }
+
+  const handleEditCancel = () => {
+    setMenuId('');
+    setshopName('');
+    setMenuName('');
+    setPrice('');
+    setStatus(true);
+    setDescription('');
+    setUpdateOpen(false);
+  }
+
   return (
     <Container style={{ marginTop: '2em' }}>
       <Header as="h2">菜單管理</Header>
 
       <Form onSubmit={handleSubmit}>
         <Form.Group widths="equal">
+          <Form.Field>
+            <label>ID</label>
+            <Input
+              readOnly
+              disabled
+              placeholder="ID"
+              value={menuId}
+              onChange={e => setMenuId(e.target.value)}
+            />
+          </Form.Field>
           <Form.Field required>
             <label>餐廳名稱</label>
-            <Input
-              placeholder="請輸入餐廳名稱"
+            <select
               value={shopName}
               onChange={e => setshopName(e.target.value)}
-            />
+            >
+            <option value="">請選擇餐廳名稱</option>
+            {shopOptions.map(option => (
+              <option key={option.key} value={option.value}>
+                {option.text}
+              </option>
+            ))}
+            </select>
           </Form.Field>
           <Form.Field required>
             <label>餐點名稱</label>
@@ -139,7 +257,15 @@ const MenuManagement = () => {
             onChange={e => setDescription(e.target.value)}
           />
         </Form.Field>
-        <Button type="submit" color="green">新增菜單</Button>
+        {updateOpen && (
+          <Button type="submit" color="green">更新菜單</Button>
+        )}
+        {!updateOpen && (
+          <Button type="submit" color="green">新增菜單</Button>
+        )}
+         {updateOpen && (
+        <Button type="button" onClick={handleEditCancel} color="red">取消編輯</Button>
+         )}
         {errorMsg && <Message negative>{errorMsg}</Message>}
         {successMsg && <Message positive>{successMsg}</Message>}
       </Form>
@@ -147,8 +273,10 @@ const MenuManagement = () => {
       <Table compact celled style={{ marginTop: '2em' }}>
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell>餐廳ID</Table.HeaderCell>
             <Table.HeaderCell>餐廳名稱</Table.HeaderCell>
             <Table.HeaderCell>餐點名稱</Table.HeaderCell>
+            <Table.HeaderCell>描述</Table.HeaderCell>
             <Table.HeaderCell>價格</Table.HeaderCell>
             <Table.HeaderCell>上架狀態</Table.HeaderCell>
             <Table.HeaderCell>編輯</Table.HeaderCell>
@@ -158,15 +286,17 @@ const MenuManagement = () => {
         <Table.Body>
           {menuList.map((item) => (
             <Table.Row key={item.value}>
+              <Table.Cell readOnly>{item.value}</Table.Cell>
               <Table.Cell>{item.shopName}</Table.Cell>
               <Table.Cell>{item.text}</Table.Cell>
+              <Table.Cell>{item.description}</Table.Cell>
               <Table.Cell>${item.price}</Table.Cell>
               <Table.Cell>{item.status}</Table.Cell>
               <Table.Cell>
-                <Button primary>編輯</Button>
+                <Button primary onClick={() => handleEdit(item)}>編輯</Button>
               </Table.Cell>
               <Table.Cell>
-                <Button negative>下架</Button>
+                <Button negative onClick={() => handleRemove(item)}>下架</Button>
               </Table.Cell>
             </Table.Row>
           ))}
