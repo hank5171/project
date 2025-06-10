@@ -2,26 +2,21 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.entity.MenuItems;
-import com.example.demo.model.entity.Order;
-import com.example.demo.repository.OrderRepository;
-import com.example.demo.response.ApiResponse;
 import com.example.demo.service.MenuItemsService;
-import com.example.demo.service.OrderService;
-
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 
 @Slf4j
@@ -46,7 +41,6 @@ public class MenuController {
 		List<MenuItemWithShopDTO> menuItemWithShopDTOs = menuItemsService.findAllMenuWithShop();
 		return ResponseEntity.ok(menuItemWithShopDTOs);
 	}
-
 	
 	// 新增菜單內容
 	@PostMapping("/add")
@@ -55,4 +49,11 @@ public class MenuController {
 		
 		return null;
 	}
+	
+	@PutMapping("/{menuId}")
+	public ResponseEntity<Map<String, Object>> removeMenuItem(@PathVariable Integer menuId) throws OrderNotFoundException {
+	    menuItemsService.removeMenuList(menuId);
+	    return ResponseEntity.ok(Map.of("success", true, "message", "修改成功"));
+	}
+
 }

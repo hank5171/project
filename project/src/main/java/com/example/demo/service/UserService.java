@@ -7,9 +7,8 @@ import com.example.demo.model.entity.UserUpdateRequest;
 
 public interface UserService {
 	public List<UserDto> findAllUser(); // 查詢所有使用者
-	public List<UserDto> findByIsDeletedFalse(); // 查詢所有使用者
+	public List<UserDto> findByIsDeletedFalse(); // 查詢沒有被刪除所有使用者
 	public void addUser(String userName, String password, Integer userRole, Boolean status);  // 添加使用者
-	public UserDto updateUser(Integer userId, UserDto userDto);  // 修改使用者
 	public UserDto updateUser(Integer userId,String userName, String password, Integer userRole, Boolean status);  // 修改使用者
 	public UserDto updateUser(UserUpdateRequest request) throws UserException;  // 修改使用者
 	public void deleteUser(Integer userId) throws UserException; // 刪除使用者

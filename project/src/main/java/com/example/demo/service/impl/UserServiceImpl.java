@@ -51,11 +51,6 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 	}
 
-	@Override
-	public UserDto updateUser(Integer userId, UserDto userDto) {
-		
-		return null;
-	}
 
 	@Override
 	public UserDto updateUser(Integer userId, String userName, String password, Integer userRole, Boolean status) {
