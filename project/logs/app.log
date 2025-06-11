@@ -71,4 +71,5117 @@
         users u1_0 
     where
         u1_0.user_id=?
-2025-06-11T13:48:26.478+08:00 DEBUG 13456 --- [project] [http-nio-8081-ex
+2025-06-11T13:48:26.478+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        is_deleted=?,
+        last_login_time=?,
+        password=?,
+        password_salt=?,
+        status=?,
+        user_role=?,
+        username=? 
+    where
+        user_id=?
+2025-06-11T13:48:26.486+08:00  INFO 13456 --- [project] [http-nio-8081-exec-1] c.e.demo.controller.LoginController      : 登入成功: user=hank roleId=管理員
+2025-06-11T13:48:29.501+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        role_id,
+        role_name,
+        level 
+    FROM
+        role;
+2025-06-11T13:48:29.516+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        role_id,
+        role_name,
+        level 
+    FROM
+        role;
+2025-06-11T13:48:29.560+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.is_deleted,
+        u1_0.last_login_time,
+        u1_0.password,
+        u1_0.password_salt,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.user_role,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        not(u1_0.is_deleted)
+2025-06-11T13:48:29.581+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.is_deleted,
+        u1_0.last_login_time,
+        u1_0.password,
+        u1_0.password_salt,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.user_role,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        not(u1_0.is_deleted)
+2025-06-11T13:48:39.851+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T13:48:39.854+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T13:48:39.868+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T13:48:39.876+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T13:48:43.159+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T13:48:43.162+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T13:48:43.163+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T13:48:43.170+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T13:48:45.885+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T13:48:45.886+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T13:48:45.887+08:00  INFO 13456 --- [project] [http-nio-8081-exec-4] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T13:48:45.900+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T13:48:47.405+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T13:48:47.407+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T13:48:47.407+08:00  INFO 13456 --- [project] [http-nio-8081-exec-8] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T13:48:47.416+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T13:48:49.350+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T13:48:49.351+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T13:48:49.352+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T13:48:49.357+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T13:48:57.502+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T13:48:57.503+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T13:48:57.504+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T13:48:57.517+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:01:04.967+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        user_id,
+        username,
+        password,
+        password_salt,
+        status,
+        user_role,
+        last_login_time,
+        created_at,
+        updated_at,
+        is_deleted 
+    from
+        users 
+    where
+        username=?
+2025-06-11T14:01:04.968+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.is_deleted,
+        u1_0.last_login_time,
+        u1_0.password,
+        u1_0.password_salt,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.user_role,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2025-06-11T14:01:04.969+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        is_deleted=?,
+        last_login_time=?,
+        password=?,
+        password_salt=?,
+        status=?,
+        user_role=?,
+        username=? 
+    where
+        user_id=?
+2025-06-11T14:01:04.974+08:00  INFO 13456 --- [project] [http-nio-8081-exec-10] c.e.demo.controller.LoginController      : 登入成功: user=hank roleId=管理員
+2025-06-11T14:01:06.965+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:01:06.967+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:01:06.967+08:00  INFO 13456 --- [project] [http-nio-8081-exec-2] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:01:08.995+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:01:08.996+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:01:08.997+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:01:10.270+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:01:10.271+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:01:10.272+08:00  INFO 13456 --- [project] [http-nio-8081-exec-3] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:01:11.467+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:01:11.468+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:01:11.469+08:00  INFO 13456 --- [project] [http-nio-8081-exec-8] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:01:15.691+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:01:15.693+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:01:18.604+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:01:18.606+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:01:18.607+08:00  INFO 13456 --- [project] [http-nio-8081-exec-10] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:01:20.029+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:01:20.030+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:01:23.231+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:01:23.244+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:01:24.349+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        `menu_id`,
+        `shop_id`,
+        `name`,
+        `description`,
+        `price`,
+        `status`,
+        `created_at`,
+        `updated_at`,
+        `is_deleted` 
+    FROM
+        menu_items;
+2025-06-11T14:01:24.358+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        `menu_id`,
+        `shop_id`,
+        `name`,
+        `description`,
+        `price`,
+        `status`,
+        `created_at`,
+        `updated_at`,
+        `is_deleted` 
+    FROM
+        menu_items;
+2025-06-11T14:01:27.020+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:01:27.022+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:01:27.030+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:01:27.031+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:01:28.128+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:01:28.130+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:01:28.130+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:01:28.143+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:01:36.712+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:01:36.716+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:02:56.897+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:02:56.899+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:02:56.908+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:02:56.909+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:02:58.946+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:02:58.948+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:02:58.948+08:00  INFO 13456 --- [project] [http-nio-8081-exec-10] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:02:58.953+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:04:57.838+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:04:57.840+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:04:59.093+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:04:59.095+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:04:59.927+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:04:59.929+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:04:59.929+08:00  INFO 13456 --- [project] [http-nio-8081-exec-4] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:05:00.742+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:00.743+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:00.744+08:00  INFO 13456 --- [project] [http-nio-8081-exec-5] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:05:01.430+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:01.431+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:01.432+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:05:01.871+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:01.872+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:01.873+08:00  INFO 13456 --- [project] [http-nio-8081-exec-10] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=2
+2025-06-11T14:05:02.237+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:02.238+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:02.239+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=2
+2025-06-11T14:05:02.786+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:02.787+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:05:03.446+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:03.447+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:03.448+08:00  INFO 13456 --- [project] [http-nio-8081-exec-5] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:05:03.939+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:03.940+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:05:07.307+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:07.308+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:05:08.055+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:08.056+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:08.057+08:00  INFO 13456 --- [project] [http-nio-8081-exec-2] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:05:08.720+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:08.721+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:05:39.697+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:39.698+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:05:40.933+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:40.935+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:05:41.889+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:41.890+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:41.891+08:00  INFO 13456 --- [project] [http-nio-8081-exec-1] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:05:41.896+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:44.279+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:44.280+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:44.281+08:00  INFO 13456 --- [project] [http-nio-8081-exec-4] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:05:44.286+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:49.449+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:49.450+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:49.451+08:00  INFO 13456 --- [project] [http-nio-8081-exec-2] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:05:49.455+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:05:51.184+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:05:51.185+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:05:51.186+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:05:51.190+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:07:27.005+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:07:27.006+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:08:09.669+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:08:09.670+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:08:41.520+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:08:41.521+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:08:42.907+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:08:42.909+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:08:44.215+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:08:44.216+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:08:44.217+08:00  INFO 13456 --- [project] [http-nio-8081-exec-10] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:08:44.224+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:08:47.782+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:08:47.783+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:08:47.784+08:00  INFO 13456 --- [project] [http-nio-8081-exec-3] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:08:47.791+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:32.620+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:32.622+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:09:33.777+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:09:33.779+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:09:33.780+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:09:33.785+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:41.568+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:09:41.569+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:09:41.570+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:09:41.576+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:43.003+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:43.004+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:09:44.367+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:09:44.369+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:09:44.370+08:00  INFO 13456 --- [project] [http-nio-8081-exec-4] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:09:44.376+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:47.369+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:09:47.370+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:09:47.370+08:00  INFO 13456 --- [project] [http-nio-8081-exec-2] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:09:47.376+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:47.799+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:09:47.800+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:09:47.801+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:09:47.809+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:49.029+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:49.031+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:09:49.464+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:09:49.465+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:09:49.466+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:09:49.477+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:50.431+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:50.432+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:09:50.616+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:09:50.617+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:10:25.002+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:10:25.002+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:10:26.242+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:10:26.244+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:10:26.244+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:10:26.251+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:10:27.385+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:10:27.388+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:10:27.390+08:00  INFO 13456 --- [project] [http-nio-8081-exec-3] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:10:27.395+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:10:52.006+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:10:52.008+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:10:54.539+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:10:54.540+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:10:54.541+08:00  INFO 13456 --- [project] [http-nio-8081-exec-4] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:10:54.546+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:10:57.650+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:10:57.652+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:10:57.652+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:10:57.663+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:10:59.999+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:11:00.000+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:11:29.175+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:11:29.176+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:11:29.177+08:00  INFO 13456 --- [project] [http-nio-8081-exec-1] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:11:29.182+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:11:32.227+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:11:32.228+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:11:32.229+08:00  INFO 13456 --- [project] [http-nio-8081-exec-4] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:11:32.234+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:11:38.077+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:11:38.078+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:11:38.078+08:00  INFO 13456 --- [project] [http-nio-8081-exec-2] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:11:38.083+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:11:45.237+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:11:45.238+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:11:45.239+08:00  INFO 13456 --- [project] [http-nio-8081-exec-10] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:11:45.247+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:14.478+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:12:14.479+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:12:14.480+08:00  INFO 13456 --- [project] [http-nio-8081-exec-5] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:12:14.487+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:14.725+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:12:14.726+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:12:14.727+08:00  INFO 13456 --- [project] [http-nio-8081-exec-3] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=2
+2025-06-11T14:12:14.732+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:15.598+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:12:15.600+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:12:15.600+08:00  INFO 13456 --- [project] [http-nio-8081-exec-7] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=3
+2025-06-11T14:12:15.605+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:17.391+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        `menu_id`,
+        `shop_id`,
+        `name`,
+        `description`,
+        `price`,
+        `status`,
+        `created_at`,
+        `updated_at`,
+        `is_deleted` 
+    FROM
+        menu_items;
+2025-06-11T14:12:17.399+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        `menu_id`,
+        `shop_id`,
+        `name`,
+        `description`,
+        `price`,
+        `status`,
+        `created_at`,
+        `updated_at`,
+        `is_deleted` 
+    FROM
+        menu_items;
+2025-06-11T14:12:39.244+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:39.246+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:12:39.255+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:39.256+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:12:40.119+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:12:40.120+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:12:40.121+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:12:40.151+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:40.479+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:12:40.480+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:12:40.481+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=2
+2025-06-11T14:12:40.486+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:40.750+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:12:40.752+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:12:40.752+08:00  INFO 13456 --- [project] [http-nio-8081-exec-8] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=3
+2025-06-11T14:12:40.766+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:41.860+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        `menu_id`,
+        `shop_id`,
+        `name`,
+        `description`,
+        `price`,
+        `status`,
+        `created_at`,
+        `updated_at`,
+        `is_deleted` 
+    FROM
+        menu_items;
+2025-06-11T14:12:41.868+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        `menu_id`,
+        `shop_id`,
+        `name`,
+        `description`,
+        `price`,
+        `status`,
+        `created_at`,
+        `updated_at`,
+        `is_deleted` 
+    FROM
+        menu_items;
+2025-06-11T14:12:43.410+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:12:43.416+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:12:44.156+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:12:44.157+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:12:44.164+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:12:44.165+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:13:25.762+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:13:25.763+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:13:32.014+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:13:32.015+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:13:43.484+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:13:43.486+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:13:49.781+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:13:49.782+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:14:08.016+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:14:08.017+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:14:10.914+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:14:10.915+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:15:35.015+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:15:35.017+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:15:49.020+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:15:49.021+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:15:51.013+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:15:51.014+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:16:08.014+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:16:08.015+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:16:26.023+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:16:26.024+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:16:35.025+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:16:35.026+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:16:38.536+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:16:38.537+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:16:42.020+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:16:42.021+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:16:43.019+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:16:43.020+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:16:48.021+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:16:48.022+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:16:49.253+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:16:49.256+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:18:19.026+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:18:19.028+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:18:26.022+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:18:26.023+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:18:49.018+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:18:49.019+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:18:53.019+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:18:53.020+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:18:57.027+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:18:57.028+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:19:45.031+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:19:45.032+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:19:48.031+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:19:48.032+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:19:57.567+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:19:57.568+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:19:57.569+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:19:57.582+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:20:00.614+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:20:00.615+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:20:00.616+08:00  INFO 13456 --- [project] [http-nio-8081-exec-1] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:20:00.621+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:21:53.037+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:21:53.038+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:24:27.030+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:24:27.030+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:24:30.977+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:24:30.978+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:24:30.978+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:24:30.992+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:24:32.031+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:24:32.032+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:24:32.033+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:24:32.041+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:25:11.030+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:25:11.031+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:26:03.550+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:26:03.551+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:26:09.185+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:26:09.186+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:26:49.038+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:26:49.039+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:26:51.949+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:26:51.950+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:26:51.951+08:00  INFO 13456 --- [project] [http-nio-8081-exec-9] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:26:51.963+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:26:52.645+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:26:52.646+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:26:52.647+08:00  INFO 13456 --- [project] [http-nio-8081-exec-6] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:26:52.651+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:26:53.013+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:26:53.014+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:26:53.015+08:00  INFO 13456 --- [project] [http-nio-8081-exec-4] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=2
+2025-06-11T14:26:53.019+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:26:53.644+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:26:53.646+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:26:53.646+08:00  INFO 13456 --- [project] [http-nio-8081-exec-5] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=2
+2025-06-11T14:26:53.653+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:28:21.046+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:28:21.047+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:33:26.051+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:33:26.052+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:33:26.057+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:33:26.058+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:33:34.805+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:33:34.806+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:33:34.807+08:00  INFO 13456 --- [project] [http-nio-8081-exec-2] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:33:34.811+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:33:35.635+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:33:35.636+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:33:35.636+08:00  INFO 13456 --- [project] [http-nio-8081-exec-7] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:33:35.645+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:04.157+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:34:04.158+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:34:04.159+08:00  INFO 13456 --- [project] [http-nio-8081-exec-10] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:34:04.164+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:04.893+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:34:04.894+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:34:04.894+08:00  INFO 13456 --- [project] [http-nio-8081-exec-1] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:34:04.899+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:21.730+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:21.732+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:34:23.126+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:34:23.127+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:34:23.128+08:00  INFO 13456 --- [project] [http-nio-8081-exec-10] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:34:23.133+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:23.549+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:34:23.550+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:34:23.551+08:00  INFO 13456 --- [project] [http-nio-8081-exec-1] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:34:23.555+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:24.222+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:34:24.223+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:34:24.223+08:00  INFO 13456 --- [project] [http-nio-8081-exec-2] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=2
+2025-06-11T14:34:24.228+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:24.439+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:34:24.441+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:34:24.442+08:00  INFO 13456 --- [project] [http-nio-8081-exec-7] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=2
+2025-06-11T14:34:24.448+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:46.059+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:46.060+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:34:53.051+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:34:53.052+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:37:59.056+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:37:59.057+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:38:02.089+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:38:02.090+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:38:02.091+08:00  INFO 13456 --- [project] [http-nio-8081-exec-5] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已下架: MenuId=1
+2025-06-11T14:38:02.100+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:05.513+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        mi1_0.menu_id,
+        mi1_0.created_at,
+        mi1_0.description,
+        mi1_0.is_deleted,
+        mi1_0.name,
+        mi1_0.price,
+        mi1_0.shop_id,
+        mi1_0.status,
+        mi1_0.updated_at 
+    from
+        menu_items mi1_0 
+    where
+        mi1_0.menu_id=?
+2025-06-11T14:38:05.514+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    update
+        menu_items 
+    set
+        created_at=?,
+        description=?,
+        is_deleted=?,
+        name=?,
+        price=?,
+        shop_id=?,
+        status=?,
+        updated_at=? 
+    where
+        menu_id=?
+2025-06-11T14:38:05.515+08:00  INFO 13456 --- [project] [http-nio-8081-exec-3] c.e.d.service.impl.MenuItemsServiceImpl  : 菜單設為已上架: MenuId=1
+2025-06-11T14:38:05.519+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:10.047+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:38:10.053+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:38:11.781+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:11.783+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:38:11.789+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:11.789+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:38:12.197+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:38:12.202+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:38:12.895+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:12.896+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:38:12.900+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:12.901+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:38:14.037+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:14.038+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:38:15.542+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-8] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:38:15.546+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:38:16.285+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:16.286+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:38:16.291+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:38:16.292+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:38:17.238+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:38:17.242+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-5] org.hibernate.SQL                        : 
+    SELECT
+        b.name,
+        b.description,
+        a.quantity,
+        a.price,
+        a.total_price,
+        a.customized,
+        a.created_at 
+    FROM
+        orders a 
+    LEFT JOIN
+        menu_items b 
+            ON a.menu_id = b.menu_id 
+    WHERE
+        a.user_id =?
+2025-06-11T14:39:02.473+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-6] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:39:02.474+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:39:02.479+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:39:02.480+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:40:57.060+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-2] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:40:57.060+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-7] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0
+2025-06-11T14:42:29.079+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-4] org.hibernate.SQL                        : 
+    SELECT
+        a.menu_id,
+        a.shop_id,
+        b.shop_name,
+        a.name,
+        a.description,
+        a.price,
+        a.status,
+        a.created_at,
+        a.is_deleted 
+    FROM
+        menu_items a 
+    LEFT JOIN
+        shop b 
+            ON a.shop_id = b.shop_id
+2025-06-11T14:42:29.080+08:00 DEBUG 13456 --- [project] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    select
+        s1_0.shop_id,
+        s1_0.is_deleted,
+        s1_0.shop_address,
+        s1_0.shop_name,
+        s1_0.tel 
+    from
+        shop s1_0

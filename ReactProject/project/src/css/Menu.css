@@ -1,0 +1,107 @@
+/* MenuManagement.css */
+
+.menu-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-header {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  color: #22223b;
+}
+
+.menu-table-area {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(34,34,59,0.08);
+  padding: 32px 32px 24px 32px;
+  min-width: 900px;
+}
+
+.menu-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 16px;
+}
+
+.menu-table th,
+.menu-table td {
+  text-align: center;
+  padding: 14px 10px;
+  font-size: 1.08rem;
+}
+
+.menu-table th {
+  background: #f3f4f6;
+  font-weight: 700;
+  color: #22223b;
+  border-bottom: 2px solid #e0e1e6;
+}
+
+.menu-table tr {
+  transition: background 0.2s;
+}
+
+.menu-table tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.menu-table tr:hover {
+  background: #f1f7ff;
+}
+
+.menu-table .menu-status {
+  display: inline-block;
+  padding: 4px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.menu-table .menu-status.up {
+  background: #e6ffed;
+  color: #21ba45;
+}
+
+.menu-table .menu-status.down {
+  background: #fff3f3;
+  color: #db2828;
+}
+
+.menu-action-btn {
+  border-radius: 16px !important;
+  min-width: 80px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 1px 3px rgba(33,133,208,0.10);
+  margin: 0 4px !important;
+}
+
+.menu-action-btn.edit {
+  background: #2185d0 !important;
+  color: #fff !important;
+}
+
+.menu-action-btn.up {
+  background: #21ba45 !important;
+  color: #fff !important;
+}
+
+.menu-action-btn.down {
+  background: #db2828 !important;
+  color: #fff !important;
+}
+
+.menu-add-btn {
+  margin-top: 20px !important;
+  border-radius: 16px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px;
+  padding: 12px 32px !important;
+  font-size: 1.1rem !important;
+}
