@@ -105,3 +105,63 @@
   padding: 12px 32px !important;
   font-size: 1.1rem !important;
 }
+
+.orderlist-container {
+  margin-top: 3em !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  min-height: 60vh;
+}
+
+.orderlist-segment {
+  max-width: 480px;
+  width: 100%;
+  border-radius: 18px !important;
+  box-shadow: 0 4px 24px rgba(33, 133, 208, 0.08) !important;
+  background: #fff !important;
+  padding: 2.5em 2em !important;
+}
+
+.orderlist-header {
+  font-weight: bold !important;
+  letter-spacing: 2px;
+  color: #2185d0 !important;
+  margin-bottom: 1.5em !important;
+}
+
+.orderlist-form label {
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+  color: #22223b;
+}
+
+.orderlist-dropdown {
+  margin-bottom: 1em !important;
+}
+
+.orderlist-textarea {
+  margin-bottom: 1em !important;
+  border-radius: 10px !important;
+  font-size: 1.08em;
+}
+
+.orderlist-btn {
+  width: 100% !important;
+  font-size: 1.13em !important;
+  letter-spacing: 1.5px;
+  border-radius: 12px !important;
+  margin-top: 1em !important;
+  box-shadow: 0 2px 8px rgba(33, 133, 208, 0.10) !important;
+}
+
+@media (max-width: 600px) {
+  .orderlist-segment {
+    padding: 1em !important;
+    max-width: 98vw;
+  }
+  .orderlist-header {
+    font-size: 1.2em !important;
+  }
+}
