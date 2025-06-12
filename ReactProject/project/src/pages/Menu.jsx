@@ -7,6 +7,7 @@ import {
 } from '../services/OrderListService';
 import '../css/Menu.css';
 import { useNavigate } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
 
 const Menu = () => {
   const [userInfo, setUserInfo] = useState(null);

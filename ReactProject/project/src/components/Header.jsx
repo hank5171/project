@@ -95,6 +95,12 @@ function Header() {
           as={Link}
           to='/menuManagement'
         />
+          <Menu.Item
+          name='餐廳管理'
+          active={activeItem === '餐廳管理'}
+          as={Link}
+          to='/shop'
+          />
         <Menu.Item
           name='新增使用者'
           active={activeItem === '新增使用者'}

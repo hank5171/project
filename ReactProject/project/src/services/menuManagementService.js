@@ -36,3 +36,22 @@ export const toggleMenuStatus = async (menuId) => {
   });
   return res;
 };
+
+export const menuRemove = async () => {
+  const res = await fetch(`${API_URL}/menu/remove`, {
+    method: "PUT",
+    credentials: "include",
+  });
+  return res;
+};
+
+export const batchOnShelf = async (shopIds) => {
+  const res = await fetch(`${API_URL}/menu/batch/onShelf`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ shopIds }), // 這裡要是陣列
+  });
+  if (!res.ok) throw new Error("批次上架失敗");
+  return res.json();
+};

@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./pages/Home";
+import Home from "./pages/NewHome";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserCreate from "./pages/UserCreate";
 import MenuHistory from "./pages/MenuHistory";
 import MenuManagement from "./pages/MenuManagement";
+import ShopManagement from "./pages/ShopManagement";
 import { useAuth } from "./context/AuthContext";
 import Menu from "./pages/Menu";
 
@@ -22,7 +23,7 @@ export default function RoutesConfig() {
 
   return (
     <>
-      {!isLoginPage && <Header />}
+      {!isLoginPage  && <Header />}
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route
@@ -40,6 +41,7 @@ export default function RoutesConfig() {
         <Route path="/menuHistory" element={<Guard><MenuHistory /></Guard>} />
         <Route path="/menuManagement" element={<Guard><MenuManagement /></Guard>} />
         <Route path="/addUser" element={<Guard><UserCreate /></Guard>} />
+        <Route path="/shop" element={<Guard><ShopManagement /></Guard>} />
         <Route path="/menuPost" element={<Guard><h1>留言板</h1></Guard>} />
         <Route
           path="*"

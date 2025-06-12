@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import MenuTable from '../components/MenuTable';
 import MenuFormModal from '../components/MenuFormModal';
 import {
   fetchMenuList,
   fetchShopList,
   addOrUpdateMenu,
-  toggleMenuStatus
+  toggleMenuStatus,
+  menuRemove
 } from '../services/menuManagementService.js';
 import '../css/Menu.css';
 import { checkLoginStatus } from '../services/authService.js';
 import { Button, Message, Segment } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import FilterableMenuTable from '../components/FilterableMenuTable';
-
+import BatchOnShelfModal from '../components/BatchOnShelfModal';
+import { batchOnShelf } from '../services/menuManagementService.js';
 
 const MenuManagement = () => {
   const [menuList, setMenuList] = useState([]);
@@ -28,7 +29,9 @@ const MenuManagement = () => {
   const [menuId, setMenuId] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
+  const [batchOnShelfOpen, setBatchOnShelfOpen] = useState(false);
+  const [selectedMenuIds, setSelectedMenuIds] = useState([]);
+  const [batchLoading, setBatchLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,8 +40,6 @@ const MenuManagement = () => {
       .then(data => {
         if (!data.status) {
           setIsLoggedIn(false);
-          // 你也可以選擇自動導向登入頁
-          // navigate('/login');
         } else {
           // 已登入才載入資料
           fetchMenuList().then(data => {
@@ -50,6 +51,7 @@ const MenuManagement = () => {
               price: item.price,
               status: item.status ? '上架' : '下架',
               shopName: item.shopName,
+              shopId: item.shopId, // 確保有 shopId 欄位
             }));
             setMenuList(MenuList);
           });
@@ -67,6 +69,11 @@ const MenuManagement = () => {
         setIsLoggedIn(false);
       });
   }, [navigate]);
+
+  // 依 shopId 去重複，給一鍵上架用
+  const uniqueShopOptions = useMemo(() => (
+    Array.from(new Map(menuList.map(item => [item.shopId, item])).values())
+  ), [menuList]);
 
   // 以下 CRUD 函式同你原本
   const handleAddNew = () => {
@@ -135,6 +142,7 @@ const MenuManagement = () => {
             price: item.price,
             status: item.status ? '上架' : '下架',
             shopName: item.shopName,
+            shopId: item.shopId,
           }));
           setMenuList(MenuList);
         });
@@ -163,6 +171,7 @@ const MenuManagement = () => {
             price: item.price,
             status: item.status ? '上架' : '下架',
             shopName: item.shopName,
+            shopId: item.shopId,
           }));
           setMenuList(MenuList);
         });
@@ -174,7 +183,61 @@ const MenuManagement = () => {
     }
   };
 
-  // 根據登入狀態顯示不同內容
+  const handleBatchOffShelf = async () => {
+    if (!window.confirm('確定要將全部商品下架嗎？')) return;
+    try {
+      await menuRemove();
+      alert('全部商品已下架');
+      fetchMenuList().then(data => {
+        const MenuList = data.map(item => ({
+          key: item.menuId,
+          value: item.menuId,
+          text: `${item.menuName}`,
+          description: item.description,
+          price: item.price,
+          status: item.status ? '上架' : '下架',
+          shopName: item.shopName,
+          shopId: item.shopId,
+        }));
+        setMenuList(MenuList);
+      });
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+
+  const handleBatchOnShelf = () => {
+    setBatchOnShelfOpen(true);
+    setSelectedMenuIds([]);
+    console.log(menuList);
+  };
+
+  const handleBatchOnShelfSubmit = async () => {
+    setBatchLoading(true);
+    try {
+      await batchOnShelf(selectedMenuIds); // selectedMenuIds 是多個 shopId 的陣列
+      alert('所選商品已全部上架');
+      setBatchOnShelfOpen(false);
+      setSelectedMenuIds([]);
+      fetchMenuList().then(data => {
+        const MenuList = data.map(item => ({
+          key: item.menuId,
+          value: item.shopId,
+          text: `${item.menuName}`,
+          description: item.description,
+          price: item.price,
+          status: item.status ? '上架' : '下架',
+          shopName: item.shopName,
+          shopId: item.shopId,
+        }));
+        setMenuList(MenuList);
+      });
+    } catch (e) {
+      alert(e.message);
+    }
+    setBatchLoading(false);
+  };
+
   if (!isLoggedIn) {
     return (
       <div className="menu-container">
@@ -191,16 +254,33 @@ const MenuManagement = () => {
   return (
     <div className="menu-container">
       <div className="menu-header">菜單管理</div>
-      <div className="menu-table-area">
-        <MenuTable menuList={menuList} onEdit={handleEdit} onRemove={handleRemove} />
-        
-        <Button
-          className="menu-add-btn"
-          color="green"
-          icon="plus"
-          content="新增菜單"
-          onClick={handleAddNew}
-        />
+      <div className="menu-area">
+        <div className="menu-header-row">
+          <Button
+            className="menu-add-btn"
+            color="blue"
+            icon="plus"
+            content="新增菜單"
+            onClick={handleAddNew}
+          />
+          <Button
+            className="menu-add-btn"
+            color="red"
+            icon="plus"
+            content="全商品下架"
+            onClick={handleBatchOffShelf}
+          />
+          <Button
+            className="menu-add-btn"
+            color="green"
+            icon="plus"
+            content="一鍵上架"
+            onClick={handleBatchOnShelf}
+          />
+        </div>
+        <div className="menu-table-wrapper">
+          <MenuTable menuList={menuList} onEdit={handleEdit} onRemove={handleRemove} />
+        </div>
       </div>
       <MenuFormModal
         open={modalOpen}
@@ -221,6 +301,15 @@ const MenuManagement = () => {
         setDescription={setDescription}
         errorMsg={errorMsg}
         successMsg={successMsg}
+      />
+      <BatchOnShelfModal
+        open={batchOnShelfOpen}
+        onClose={() => setBatchOnShelfOpen(false)}
+        menuOptions={uniqueShopOptions} 
+        selectedMenuIds={selectedMenuIds}
+        setSelectedMenuIds={setSelectedMenuIds}
+        onSubmit={handleBatchOnShelfSubmit}
+        loading={batchLoading}
       />
     </div>
   );

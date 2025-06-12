@@ -97,14 +97,24 @@
   color: #fff !important;
 }
 
+.menu-add-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .menu-add-btn {
-  margin-top: 20px !important;
   border-radius: 16px !important;
   font-weight: 600 !important;
   letter-spacing: 1px;
   padding: 12px 32px !important;
   font-size: 1.1rem !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+ 
 }
+
 
 .orderlist-container {
   margin-top: 3em !important;
@@ -164,4 +174,20 @@
   .orderlist-header {
     font-size: 1.2em !important;
   }
+}
+
+.menu-area {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  padding: 32px 32px 24px 32px;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.menu-header-row {
+  display: flex;
+  justify-content: flex-start; /* 靠左，如果要靠右可改成 flex-end */
+  align-items: center;
+  margin-bottom: 18px;
 }
