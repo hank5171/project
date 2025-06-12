@@ -52,9 +52,32 @@ public class MenuItemsServiceImpl implements MenuItemsService {
 	    	return;
 		}
 	}
-
-
+	
+	@Override
 	public List<MenuItemWithShopDTO> findAllMenuWithShop(){
 		return menuItemsRepository.findAllMenuWithShop();
+	}
+	
+	@Override
+	public List<MenuItemWithShopDTO> findAllMenuWithShop(String shopName, Boolean status) {
+	    if (shopName != null && status != null) {
+	        return menuItemsRepository.findAllMenuWithShopNameStatus(shopName, status);
+	    } else if (shopName != null) {
+	        return menuItemsRepository.findAllMenuWithShopName(shopName);
+	    } else if (status != null) {
+	        return menuItemsRepository.findAllMenuWithShopStatus(status);
+	    } else {
+	        return menuItemsRepository.findAllMenuWithShop();
+	    }
+	}
+
+	@Override
+	public void removeMenuitems() {
+		menuItemsRepository.removeMenuitems();
+	}
+
+	@Override
+	public void onShelf(List<Integer> shopIds) {
+		menuItemsRepository.onShelf(shopIds);
 	}
 }

@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.model.dto.OrderDto;
 import com.example.demo.model.entity.Order;
 import com.example.demo.model.entity.User;
 
 // Spring JPA
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> { // User: entity, Integer: @Id 的類別
-	List<Order> findByUserId(Integer userId);
-	
+	// 用userId找訂單
 	@Query(value = "SELECT b.name, b.description, a.quantity, a.price, a.total_price, a.customized, a.created_at FROM orders a LEFT JOIN menu_items b ON a.menu_id = b.menu_id WHERE a.user_id =:userId"
     ,nativeQuery = true)
 	List<Object[]> findOrderDetailsByUserId(@Param("userId") Integer userId);

@@ -24,9 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 public class ShopController {
 	
 	@Autowired
-	private ShopRepository shopRepository;
-
-	@Autowired
 	private shopService shopService;
 	
     @GetMapping

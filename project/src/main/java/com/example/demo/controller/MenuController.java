@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.model.dto.MenuItemWithShopDTO;
@@ -17,6 +18,7 @@ import com.example.demo.service.MenuItemsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Slf4j
@@ -41,19 +43,47 @@ public class MenuController {
 		List<MenuItemWithShopDTO> menuItemWithShopDTOs = menuItemsService.findAllMenuWithShop();
 		return ResponseEntity.ok(menuItemWithShopDTOs);
 	}
+	// 取得條件菜單列表
+	@GetMapping("/LikeList")
+	public ResponseEntity<List<MenuItemWithShopDTO>> getMenuItemsShopNameList(
+	    @RequestParam(required = false) String shopName,
+	    @RequestParam(required = false) Boolean status
+	) {
+	    List<MenuItemWithShopDTO> menuItemWithShopDTOs = menuItemsService.findAllMenuWithShop(shopName, status);
+	    return ResponseEntity.ok(menuItemWithShopDTOs);
+	}
 	
 	// 新增菜單內容
 	@PostMapping("/add")
 	public ResponseEntity<MenuItemWithShopDTO> addMenuItemsList(){
-		
-		
 		return null;
 	}
 	
+	// 編輯菜單列表
 	@PutMapping("/{menuId}")
 	public ResponseEntity<Map<String, Object>> removeMenuItem(@PathVariable Integer menuId) throws OrderNotFoundException {
 	    menuItemsService.removeMenuList(menuId);
 	    return ResponseEntity.ok(Map.of("success", true, "message", "修改成功"));
 	}
+	
+	// 下架菜單列表
+	@PutMapping("/remove")
+	public ResponseEntity<Map<String, Object>> removeMenuitems() {
+	    menuItemsService.removeMenuitems();
+	    return ResponseEntity.ok(Map.of("success", true, "message", "全部商品已下架"));
+	}
+	
+	// 選擇餐廳菜單上架
+	@PutMapping("/batch/onShelf")
+	public ResponseEntity<?> batchOnShelf(@RequestBody Map<String, List<Integer>> request) {
+	    List<Integer> shopIds = request.get("shopIds"); // 這裡 key 要和前端一致
+	    menuItemsService.onShelf(shopIds);
+	    // shopIds 就是 [1, 2]
+	    return ResponseEntity.ok(Map.of("success", true, "message", "所選店家商品已全部上架"));
+	}
+
+
+	
+
 
 }
