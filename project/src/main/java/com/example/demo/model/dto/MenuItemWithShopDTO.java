@@ -13,7 +13,7 @@ public class MenuItemWithShopDTO {
     private Integer menuId;
     private Integer shopId;
     private String shopName;
-    private String menuName;
+    private String name;
     private String description;
     private Integer price;
     private Boolean status;

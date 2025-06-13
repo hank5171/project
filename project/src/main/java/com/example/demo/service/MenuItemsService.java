@@ -13,4 +13,5 @@ public interface MenuItemsService {
 	public void removeMenuList(Integer menuId) throws OrderNotFoundException; // 下架餐點
 	public void removeMenuitems();
 	public void onShelf(List<Integer> shopIds);
+	public MenuItems addItems(MenuItemWithShopDTO  menuItemWithShopDTO);
 }

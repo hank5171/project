@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.dto.MenuItemsDto;
 import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.entity.MenuItems;
@@ -23,5 +24,10 @@ public class MenuItemsMapper {
 	public MenuItems toEntity(MenuItemsDto menuItemsDto) {
 		// DTO 轉 Entity
 		return modelMapper.map(menuItemsDto, MenuItems.class);
+	}
+	
+	public MenuItems toEntity(MenuItemWithShopDTO  menuItemWithShopDTO ) {
+		// DTO 轉 Entity
+		return modelMapper.map(menuItemWithShopDTO, MenuItems.class);
 	}
 }

@@ -43,6 +43,7 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer> {
 	@Query(value ="UPDATE menu_items SET status = 0;", nativeQuery = true)
 	void removeMenuitems();
 	
+	// 上架選擇商品
 	@Modifying
 	@Transactional
 	@Query(value ="UPDATE menu_items SET status = 1 WHERE shop_id IN (:shopIds)", nativeQuery = true)

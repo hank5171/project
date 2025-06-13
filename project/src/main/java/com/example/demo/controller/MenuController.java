@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.entity.MenuItems;
+import com.example.demo.model.entity.UserCert;
 import com.example.demo.service.MenuItemsService;
+
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -55,8 +58,10 @@ public class MenuController {
 	
 	// 新增菜單內容
 	@PostMapping("/add")
-	public ResponseEntity<MenuItemWithShopDTO> addMenuItemsList(){
-		return null;
+	public ResponseEntity<MenuItems> addMenuItemsList(@RequestBody
+			MenuItemWithShopDTO dto){
+		MenuItems result = menuItemsService.addItems(dto);
+	    return ResponseEntity.ok(result);
 	}
 	
 	// 編輯菜單列表
@@ -75,15 +80,12 @@ public class MenuController {
 	
 	// 選擇餐廳菜單上架
 	@PutMapping("/batch/onShelf")
-	public ResponseEntity<?> batchOnShelf(@RequestBody Map<String, List<Integer>> request) {
+	public ResponseEntity<?> batchOnShelf(@RequestBody Map<String, List<Integer>> request, HttpSession session) {
 	    List<Integer> shopIds = request.get("shopIds"); // 這裡 key 要和前端一致
 	    menuItemsService.onShelf(shopIds);
+	    UserCert userCert = (UserCert)session.getAttribute("userCert");
+	    log.info("上架: user={} ShopId={}", userCert.getUserId(),shopIds);
 	    // shopIds 就是 [1, 2]
 	    return ResponseEntity.ok(Map.of("success", true, "message", "所選店家商品已全部上架"));
 	}
-
-
-	
-
-
 }

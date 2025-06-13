@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.awt.MenuItem;
 import java.util.List;
 
 
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.OrderNotFoundException;
+import com.example.demo.mapper.MenuItemsMapper;
 import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.entity.MenuItems;
 import com.example.demo.repository.MenuItemsRepository;
@@ -21,6 +23,9 @@ public class MenuItemsServiceImpl implements MenuItemsService {
 
 	@Autowired
 	private MenuItemsRepository menuItemsRepository;
+	
+	@Autowired
+	private MenuItemsMapper menuItemsMapper;
 	
 	@Override
 	public List<MenuItems> getMenuItems() {
@@ -80,4 +85,12 @@ public class MenuItemsServiceImpl implements MenuItemsService {
 	public void onShelf(List<Integer> shopIds) {
 		menuItemsRepository.onShelf(shopIds);
 	}
+
+
+	@Override
+	public MenuItems addItems(MenuItemWithShopDTO  menuItemWithShopDTO) {
+		return menuItemsRepository.save(menuItemsMapper.toEntity(menuItemWithShopDTO));
+	}
+	
+	
 }
