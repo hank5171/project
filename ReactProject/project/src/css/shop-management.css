@@ -1,0 +1,125 @@
+.menu-container {
+  max-width: 1100px;
+  margin: 36px auto 0 auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+  padding: 32px 36px 36px 36px;
+}
+
+.menu-header {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 26px;
+  letter-spacing: 1px;
+}
+
+
+
+.menu-header-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.menu-add-btn {
+  font-size: 1.08rem !important;
+  padding: 0.7em 2em !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+.menu-table-wrapper {
+  margin-bottom: 20px;
+}
+
+.pagination-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.shop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 28px 20px 28px;
+  background: #fafbfc;
+  border-radius: 14px;
+  min-width: 320px;
+  max-width: 360px;
+  box-shadow: 0 4px 18px rgba(33, 33, 33, 0.09);
+}
+
+.shop-form-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 2px;
+  font-size: 1rem;
+}
+
+.shop-form input {
+  border: 1px solid #d0d4da;
+  border-radius: 7px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  background: #fff;
+  transition: border 0.2s;
+}
+
+.shop-form input:focus {
+  border: 1.5px solid #2185d0;
+  outline: none;
+  background: #f2f8fd;
+}
+
+.shop-form-btns {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+/* .shop-form-btns:hover {
+  background: #3949ab;
+} */
+
+.shop-form-btns .ui.button,
+.shop-form-btns button {
+  min-width: 90px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  border-radius: 7px !important;
+  padding: 0.7em 1.6em;
+}
+
+.shop-form-btns .ui.button.blue,
+.shop-form-btns button[type="submit"] {
+  background: #2185d0 !important;
+  color: #fff !important;
+  border: none;
+}
+
+.shop-form-btns .ui.button.grey,
+.shop-form-btns button[type="button"] {
+  background: #bdbdbd !important;
+  color: #fff !important;
+  border: none;
+}

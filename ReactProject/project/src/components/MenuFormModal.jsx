@@ -1,33 +1,70 @@
 // components/MenuFormModal.jsx
-import { Modal, Form, Input, Dropdown, TextArea, Button, Message } from 'semantic-ui-react';
+import {
+  Modal,
+  Form,
+  Input,
+  Dropdown,
+  TextArea,
+  Button,
+  Message,
+} from "semantic-ui-react";
 
 const MenuFormModal = ({
-  open, onClose, onSubmit, updateOpen,
-  menuId, shopName, setshopName, shopOptions,
-  menuName, setMenuName, price, setPrice,
-  status, setStatus, description, setDescription,
-  errorMsg, successMsg
+  open,
+  onClose,
+  onSubmit,
+  updateOpen,
+  menuId,
+  shopId,
+  setshopId,
+  shopName,
+  setshopName,
+  shopOptions,
+  menuName,
+  setMenuName,
+  price,
+  setPrice,
+  status,
+  setStatus,
+  description,
+  setDescription,
+  errorMsg,
+  successMsg,
 }) => (
   <Modal open={open} onClose={onClose} size="small" closeIcon>
-    <Modal.Header style={{ fontWeight: 'bold', fontSize: '1.3em', letterSpacing: '2px' }}>
-      {updateOpen ? '編輯菜單' : '新增菜單'}
+    <Modal.Header
+      style={{ fontWeight: "bold", fontSize: "1.3em", letterSpacing: "2px" }}
+    >
+      {updateOpen ? "編輯菜單" : "新增菜單"}
     </Modal.Header>
     <Modal.Content>
-      <Form onSubmit={e => { e.preventDefault(); onSubmit(); }} style={{ padding: '1em 1.5em' }}>
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit();
+        }}
+        style={{ padding: "1em 1.5em" }}
+      >
         <Form.Group widths={2}>
           <Form.Field>
             <label>ID</label>
-            <Input readOnly disabled placeholder="ID" value={menuId} style={{ background: '#f5f5f5' }} />
+            <Input
+              readOnly
+              disabled
+              placeholder="ID"
+              style={{ background: "#f5f5f5" }}
+            />
           </Form.Field>
           <Form.Field required>
             <label>餐廳名稱</label>
             <Dropdown
               placeholder="請選擇餐廳名稱"
+              search
               fluid
               selection
               options={shopOptions}
-              value={shopName}
-              onChange={(e, { value }) => setshopName(value)}
+              value={shopId}
+              onChange={(e, { value }) => setshopId(value)}
               style={{ minWidth: 0 }}
             />
           </Form.Field>
@@ -38,7 +75,7 @@ const MenuFormModal = ({
             <Input
               placeholder="請輸入餐點名稱"
               value={menuName}
-              onChange={e => setMenuName(e.target.value)}
+              onChange={(e) => setMenuName(e.target.value)}
             />
           </Form.Field>
           <Form.Field required>
@@ -48,7 +85,7 @@ const MenuFormModal = ({
               min="0"
               placeholder="請輸入價格"
               value={price}
-              onChange={e => setPrice(e.target.value)}
+              onChange={(e) => setPrice(e.target.value)}
             />
           </Form.Field>
         </Form.Group>
@@ -59,8 +96,8 @@ const MenuFormModal = ({
               fluid
               selection
               options={[
-                { key: true, value: true, text: '上架' },
-                { key: false, value: false, text: '下架' }
+                { key: true, value: true, text: "上架" },
+                { key: false, value: false, text: "下架" },
               ]}
               value={status}
               onChange={(e, { value }) => setStatus(value)}
@@ -73,20 +110,35 @@ const MenuFormModal = ({
           <TextArea
             placeholder="可輸入餐點描述"
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             style={{ minHeight: 80 }}
           />
         </Form.Field>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1em', marginTop: '1.5em' }}>
-          <Button type="submit" color="green" size="large">
-            {updateOpen ? '更新菜單' : '新增菜單'}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "1em",
+            marginTop: "1.5em",
+          }}
+        >
+          <Button type="submit" color="blue" size="large">
+            {updateOpen ? "更新菜單" : "新增菜單"}
           </Button>
           <Button type="button" onClick={onClose} color="red" size="large">
             取消
           </Button>
         </div>
-        {errorMsg && <Message negative style={{ marginTop: '1em' }}>{errorMsg}</Message>}
-        {successMsg && <Message positive style={{ marginTop: '1em' }}>{successMsg}</Message>}
+        {errorMsg && (
+          <Message negative style={{ marginTop: "1em" }}>
+            {errorMsg}
+          </Message>
+        )}
+        {successMsg && (
+          <Message positive style={{ marginTop: "1em" }}>
+            {successMsg}
+          </Message>
+        )}
       </Form>
     </Modal.Content>
   </Modal>

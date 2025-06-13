@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Button, Icon } from 'semantic-ui-react';
+import { useState } from "react";
+import { Button, Icon } from "semantic-ui-react";
 
 const PAGE_SIZE = 10;
 
 const MenuTable = ({ menuList, onEdit, onRemove }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(menuList.length / PAGE_SIZE);
+  const totalPages = Math.max(1, Math.ceil(menuList.length / PAGE_SIZE));
 
   // 取得目前頁面的資料
   const currentData = menuList.slice(
@@ -40,7 +40,11 @@ const MenuTable = ({ menuList, onEdit, onRemove }) => {
               <td>{item.description}</td>
               <td>${item.price}</td>
               <td>
-                <span className={`menu-status ${item.status === '上架' ? 'up' : 'down'}`}>
+                <span
+                  className={`menu-status ${
+                    item.status === "上架" ? "up" : "down"
+                  }`}
+                >
                   {item.status}
                 </span>
               </td>
@@ -56,9 +60,9 @@ const MenuTable = ({ menuList, onEdit, onRemove }) => {
               <td>
                 <Button
                   className="menu-action-btn"
-                  color={item.status === '上架' ? 'red' : 'green'}
-                  icon={item.status === '上架' ? 'arrow down' : 'arrow up'}
-                  content={item.status === '上架' ? '下架' : '上架'}
+                  color={item.status === "上架" ? "red" : "green"}
+                  icon={item.status === "上架" ? "arrow down" : "arrow up"}
+                  content={item.status === "上架" ? "下架" : "上架"}
                   onClick={() => onRemove(item)}
                 />
               </td>
@@ -67,15 +71,33 @@ const MenuTable = ({ menuList, onEdit, onRemove }) => {
         </tbody>
       </table>
       {/* 分頁控制 */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, gap: 16 }}>
-        <Button icon labelPosition="left" onClick={handlePrev} disabled={currentPage === 1}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 20,
+          gap: 16,
+        }}
+      >
+        <Button
+          icon
+          labelPosition="left"
+          onClick={handlePrev}
+          disabled={currentPage === 1}
+        >
           <Icon name="chevron left" />
           上一頁
         </Button>
         <span style={{ fontWeight: 500 }}>
           {currentPage} / {totalPages}
         </span>
-        <Button icon labelPosition="right" onClick={handleNext} disabled={currentPage === totalPages}>
+        <Button
+          icon
+          labelPosition="right"
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+        >
           下一頁
           <Icon name="chevron right" />
         </Button>

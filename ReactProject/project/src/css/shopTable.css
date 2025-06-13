@@ -31,7 +31,7 @@
 }
 
 .edit-btn {
-  background: #5c6bc0;
+  background: #348dd6;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -45,7 +45,7 @@
 }
 
 .pagination {
-  display: flex;
+  display: flex; ;
   justify-content: center;
   align-items: center;
   margin-top: 18px;
@@ -53,7 +53,7 @@
 }
 
 .page-btn {
-  background: #90caf9;
+  background: #348dd6;
   border: none;
   color: #fff;
   border-radius: 4px;
@@ -73,3 +73,4 @@
   font-weight: 500;
   color: #333;
 }
+

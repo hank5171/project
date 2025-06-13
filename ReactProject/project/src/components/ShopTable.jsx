@@ -5,10 +5,13 @@ const ShopTable = ({ shops, onEdit }) => {
   // 分頁狀態
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
-  const totalPages = Math.ceil(shops.length / pageSize);
+  const totalPages = Math.max(1, Math.ceil(shops.length / pageSize));
 
   // 取得當前頁的資料
-  const currentData = shops.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const currentData = shops.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
   return (
     <div className="table-container">
@@ -28,7 +31,9 @@ const ShopTable = ({ shops, onEdit }) => {
               <td>{shop.tel}</td>
               <td>{shop.shopAddress}</td>
               <td>
-                <button className="edit-btn" onClick={() => onEdit(shop)}>編輯</button>
+                <button className="edit-btn" onClick={() => onEdit(shop)}>
+                  編輯
+                </button>
               </td>
             </tr>
           ))}
