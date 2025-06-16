@@ -17,7 +17,6 @@ const MenuTable = ({
         <thead>
           <tr>
             <th>餐廳名稱</th>
-            <th>ID</th>
             <th>餐點名稱</th>
             <th>描述</th>
             <th>價格</th>
@@ -38,7 +37,6 @@ const MenuTable = ({
                     {group.shopName}
                   </td>
                 )}
-                <td>{item.value}</td>
                 <td>{item.text}</td>
                 <td>{item.description}</td>
                 <td>${item.price}</td>

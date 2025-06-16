@@ -45,4 +45,11 @@ public class ShopServiceImpl implements shopService {
 		Shop newShop = new Shop(shop.getShopId(),shop.getShopName(),shop.getTel(),shop.getShopAddress(),shop.getIsDeleted());
 		shopRepository.save(newShop);
 	}
+
+	@Override
+	public Shop updateShop(ShopDto shopDto) {
+		Shop shop = shopMapper.toEntity(shopDto);
+		shopRepository.save(shop);
+		return shop;
+	}
 }

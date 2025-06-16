@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Dropdown } from "semantic-ui-react";
 
-const statusOptions = [
-  { key: "all", value: "all", text: "全部" },
-  { key: "on", value: "on", text: "只顯示上架" },
-  { key: "off", value: "off", text: "只顯示下架" },
-];
-
 const BatchOnShelfModal = ({
   open,
   onClose,
@@ -44,18 +38,6 @@ const BatchOnShelfModal = ({
       <Modal.Header>選擇要上架的餐廳</Modal.Header>
       <Modal.Content>
         <Form>
-          <Form.Field>
-            <label style={{ fontWeight: 600, marginBottom: 20 }}>
-              狀態篩選
-            </label>
-            <Dropdown
-              options={statusOptions}
-              value={statusFilter}
-              onChange={(e, { value }) => setStatusFilter(value)}
-              selection
-              style={{ marginBottom: 20 }}
-            />
-          </Form.Field>
           <Form.Field>
             <label style={{ fontWeight: 600, marginBottom: 20 }}>
               請選擇店家（可複選）
