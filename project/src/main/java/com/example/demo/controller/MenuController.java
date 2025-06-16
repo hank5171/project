@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 
 import java.util.Map;
+
+import com.example.demo.model.dto.MenuItemsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -74,7 +76,7 @@ public class MenuController {
 	// 下架菜單列表
 	@PutMapping("/remove")
 	public ResponseEntity<Map<String, Object>> removeMenuitems() {
-	    menuItemsService.removeMenuitems();
+		menuItemsService.removeMenuitems();
 	    return ResponseEntity.ok(Map.of("success", true, "message", "全部商品已下架"));
 	}
 	
@@ -87,5 +89,12 @@ public class MenuController {
 	    log.info("上架: user={} ShopId={}", userCert.getUserId(),shopIds);
 	    // shopIds 就是 [1, 2]
 	    return ResponseEntity.ok(Map.of("success", true, "message", "所選店家商品已全部上架"));
+	}
+
+	// 更新餐廳菜單資料
+	@PutMapping("/update/{menuId}")
+	public  ResponseEntity<MenuItems> updateMenuItem(@RequestBody MenuItemsDto menuItemsDto) {
+		MenuItems result = menuItemsService.updateMenuItems(menuItemsDto);
+		return ResponseEntity.ok(result);
 	}
 }

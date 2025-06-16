@@ -39,22 +39,36 @@ const MenuManagement = () => {
   const [batchLoading, setBatchLoading] = useState(false);
   const navigate = useNavigate();
   const [refreshFlag, setRefreshFlag] = useState(false);
-  const groupedMenu = Object.values(
-    menuList.reduce((acc, item) => {
-      if (!acc[item.shopId])
+    // 假設 menuList 是所有資料
+  const filteredMenuList = menuList.filter((item) => {
+    if (filterStatus === "all") return true;
+    if (filterStatus === "on")
+      return item.status === true || item.status === "上架";
+    if (filterStatus === "off")
+      return item.status === false || item.status === "下架";
+    return true;
+  });
+
+  // 依據篩選後的資料分組
+  const groupedMenu = useMemo(() => {
+    return Object.values(
+      filteredMenuList.reduce((acc, item) => {
+       if (!acc[item.shopId])
         acc[item.shopId] = {
           shopId: item.shopId,
           shopName: item.shopName,
+          status: item.status,
           items: [],
         };
-      acc[item.shopId].items.push(item);
-      return acc;
-    }, {})
-  );
+        acc[item.shopId].items.push(item);
+        return acc;
+      }, {})
+    );
+  }, [filteredMenuList]); 
   // groupedMenus: [{ shopId, shopName, items: [...] }, ...]
 
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(groupedMenu.length / PAGE_SIZE);
+  const totalPages = Math.max(1, Math.ceil(groupedMenu.length / PAGE_SIZE));
   const currentGroups = groupedMenu.slice(
     (currentPage - 1) * PAGE_SIZE,
     currentPage * PAGE_SIZE
@@ -97,16 +111,6 @@ const MenuManagement = () => {
       });
   }, [navigate, refreshFlag]);
 
-  // 假設 menuList 是所有資料
-  const filteredMenuList = menuList.filter((item) => {
-    if (filterStatus === "all") return true;
-    if (filterStatus === "on")
-      return item.status === true || item.status === "上架";
-    if (filterStatus === "off")
-      return item.status === false || item.status === "下架";
-    return true;
-  });
-
   // 依 shopId 去重複，給一鍵上架用
   const uniqueShopOptions = useMemo(
     () =>
@@ -134,7 +138,8 @@ const MenuManagement = () => {
 
   const handleEdit = (item) => {
     console.log("Editing item:", item);
-    setMenuId(item.shopId);
+    setshopId(item.shopId);
+    setMenuId(item.value);
     setshopName(item.shopName);
     setMenuName(item.text);
     setPrice(item.price);
@@ -169,6 +174,7 @@ const MenuManagement = () => {
     const payload = {
       shopId,
       shopName,
+      menuId,
       menuName,
       price: parseInt(price, 10),
       status,
@@ -349,6 +355,7 @@ const MenuManagement = () => {
         onSubmit={handleSubmit}
         updateOpen={updateOpen}
         menuId={menuId}
+        setMenuId={setMenuId}
         shopId={shopId}
         setshopId={setshopId}
         shopName={shopName}

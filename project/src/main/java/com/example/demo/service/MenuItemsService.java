@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.model.dto.MenuItemWithShopDTO;
+import com.example.demo.model.dto.MenuItemsDto;
 import com.example.demo.model.entity.MenuItems;
 
 public interface MenuItemsService {
@@ -14,4 +15,5 @@ public interface MenuItemsService {
 	public void removeMenuitems();
 	public void onShelf(List<Integer> shopIds);
 	public MenuItems addItems(MenuItemWithShopDTO  menuItemWithShopDTO);
+	public MenuItems updateMenuItems (MenuItemsDto menuItemsDto);
 }

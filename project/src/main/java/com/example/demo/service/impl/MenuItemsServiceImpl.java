@@ -4,6 +4,7 @@ import java.awt.MenuItem;
 import java.util.List;
 
 
+import com.example.demo.model.dto.MenuItemsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -91,6 +92,9 @@ public class MenuItemsServiceImpl implements MenuItemsService {
 	public MenuItems addItems(MenuItemWithShopDTO  menuItemWithShopDTO) {
 		return menuItemsRepository.save(menuItemsMapper.toEntity(menuItemWithShopDTO));
 	}
-	
-	
+
+	@Override
+	public MenuItems updateMenuItems(MenuItemsDto menuItemsDto) {
+		return menuItemsRepository.save(menuItemsMapper.toEntity(menuItemsDto));
+	}
 }
