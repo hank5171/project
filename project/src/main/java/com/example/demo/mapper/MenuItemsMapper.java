@@ -10,11 +10,23 @@ import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.entity.MenuItems;
 import com.example.demo.model.entity.User;
 
+import jakarta.annotation.PostConstruct;
+
 @Component // 此物件由 Springboot 來管理
 public class MenuItemsMapper {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@PostConstruct
+	public void setupMapper() {
+	    modelMapper.typeMap(MenuItemWithShopDTO.class, MenuItems.class)
+	        .addMappings(mapper -> {
+	            mapper.skip(MenuItems::setCreatedAt);
+	            mapper.skip(MenuItems::setUpdatedAt);
+	        });
+	}
+
 	
 	public MenuItemsDto toDto(MenuItems menuItems) {
 		// entity 轉 DTO

@@ -39,5 +39,5 @@ public class Shop {
 	private String shopAddress;
 	
     @Column(name = "is_deleted") 
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 }

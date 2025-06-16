@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +38,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class MenuItems {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "menu_id")
 	private Integer menuId;
 	
@@ -50,10 +53,10 @@ public class MenuItems {
 	
 	private Boolean status;
 	
-    @Column(name = "created_at") 
+	@Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
     
-    @Column(name = "updated_at") 
+    @Column(name = "updated_at", insertable = false, updatable = false)
     private LocalDateTime updatedAt;
 	
 	@Column(name = "is_deleted")
