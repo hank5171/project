@@ -16,6 +16,8 @@ import BatchOnShelfModal from "../components/BatchOnShelfModal";
 import { batchOnShelf } from "../services/menuManagementService.js";
 import FilterDropdown from "../components/FilterDropdown.jsx";
 
+const PAGE_SIZE = 2; // 每頁顯示5家餐廳
+
 const MenuManagement = () => {
   const [filterStatus, setFilterStatus] = useState("on");
   const [menuList, setMenuList] = useState([]);
@@ -37,6 +39,26 @@ const MenuManagement = () => {
   const [batchLoading, setBatchLoading] = useState(false);
   const navigate = useNavigate();
   const [refreshFlag, setRefreshFlag] = useState(false);
+  const groupedMenu = Object.values(
+    menuList.reduce((acc, item) => {
+      if (!acc[item.shopId])
+        acc[item.shopId] = {
+          shopId: item.shopId,
+          shopName: item.shopName,
+          items: [],
+        };
+      acc[item.shopId].items.push(item);
+      return acc;
+    }, {})
+  );
+  // groupedMenus: [{ shopId, shopName, items: [...] }, ...]
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(groupedMenu.length / PAGE_SIZE);
+  const currentGroups = groupedMenu.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
 
   useEffect(() => {
     // 先檢查登入狀態
@@ -58,11 +80,12 @@ const MenuManagement = () => {
               shopId: item.shopId, // 確保有 shopId 欄位
             }));
             setMenuList(MenuList);
+            console.log("MenuList:", MenuList);
           });
           fetchShopList().then((data) => {
             const ShopOptions = data.map((item) => ({
               key: item.shopId,
-              value: item.shopName,
+              value: item.shopId,
               text: item.shopName,
             }));
             setShopOptions(ShopOptions);
@@ -110,7 +133,8 @@ const MenuManagement = () => {
   };
 
   const handleEdit = (item) => {
-    setMenuId(item.value);
+    console.log("Editing item:", item);
+    setMenuId(item.shopId);
     setshopName(item.shopName);
     setMenuName(item.text);
     setPrice(item.price);
@@ -144,6 +168,7 @@ const MenuManagement = () => {
     }
     const payload = {
       shopId,
+      shopName,
       menuName,
       price: parseInt(price, 10),
       status,
@@ -309,7 +334,10 @@ const MenuManagement = () => {
         </div>
         <div className="menu-table-wrapper">
           <MenuTable
-            menuList={filteredMenuList}
+            groupedMenu={currentGroups}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
             onEdit={handleEdit}
             onRemove={handleRemove}
           />

@@ -84,54 +84,51 @@ const ShopManagement = () => {
         </div>
       </div>
       <Modal open={modalOpen} onClose={handleCancel}>
-  <form className="shop-form" onSubmit={handleSubmit}>
-    <div className="shop-form-title">
-      {editing ? "修改餐廳" : "新增餐廳"}
-    </div>
-    <div className="form-group">
-      <label>餐廳名稱</label>
-      <input
-        name="shopName"
-        value={form.shopName}
-        onChange={handleChange}
-        required
-        maxLength={40}
-        placeholder="請輸入店家名稱"
-      />
-    </div>
-    <div className="form-group">
-      <label>電話</label>
-      <input
-        name="tel"
-        value={form.tel}
-        onChange={handleChange}
-        required
-        maxLength={20}
-        placeholder="請輸入電話"
-      />
-    </div>
-    <div className="form-group">
-      <label>地址</label>
-      <input
-        name="shopAddress"
-        value={form.shopAddress}
-        onChange={handleChange}
-        required
-        maxLength={80}
-        placeholder="請輸入地址"
-      />
-    </div>
-    <div className="shop-form-btns">
-      <button type="submit" >
-        {editing ? "儲存修改" : "新增"}
-      </button>
-      <button type="button" onClick={handleCancel}>
-        取消
-      </button>
-    </div>
-  </form>
-</Modal>
-
+        <form className="shop-form" onSubmit={handleSubmit}>
+          <div className="shop-form-title">
+            {editing ? "修改餐廳" : "新增餐廳"}
+          </div>
+          <div className="form-group">
+            <label>餐廳名稱</label>
+            <input
+              name="shopName"
+              value={form.shopName}
+              onChange={handleChange}
+              required
+              maxLength={40}
+              placeholder="請輸入店家名稱"
+            />
+          </div>
+          <div className="form-group">
+            <label>電話</label>
+            <input
+              name="tel"
+              value={form.tel}
+              onChange={handleChange}
+              required
+              maxLength={20}
+              placeholder="請輸入電話"
+            />
+          </div>
+          <div className="form-group">
+            <label>地址</label>
+            <input
+              name="shopAddress"
+              value={form.shopAddress}
+              onChange={handleChange}
+              required
+              maxLength={80}
+              placeholder="請輸入地址"
+            />
+          </div>
+          <div className="shop-form-btns">
+            <button type="submit">{editing ? "儲存修改" : "新增"}</button>
+            <button type="button" onClick={handleCancel}>
+              取消
+            </button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 };

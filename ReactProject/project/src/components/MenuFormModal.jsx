@@ -51,6 +51,7 @@ const MenuFormModal = ({
             <Input
               readOnly
               disabled
+              value={shopId}
               placeholder="ID"
               style={{ background: "#f5f5f5" }}
             />
@@ -64,7 +65,14 @@ const MenuFormModal = ({
               selection
               options={shopOptions}
               value={shopId}
-              onChange={(e, { value }) => setshopId(value)}
+              onChange={(e, { value }) => {
+                setshopId(value);
+                // 根據 value 找到對應的 shopName
+                const selected = shopOptions.find(
+                  (option) => option.value === value
+                );
+                setshopName(selected ? selected.text : "");
+              }}
               style={{ minWidth: 0 }}
             />
           </Form.Field>
