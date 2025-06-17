@@ -46,7 +46,7 @@ const MenuFormModal = ({
         }}
         style={{ padding: "1em 1.5em" }}
       >
-        <Form.Group widths={3}>
+        <Form.Group widths={2}>
           <Form.Field>
             <label>ID</label>
             <Input
@@ -55,17 +55,6 @@ const MenuFormModal = ({
               value={shopId}
               placeholder="ID"
               style={{ background: "#f5f5f5" }}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>ItemsID</label>
-            <Input
-              readOnly
-              disabled
-              value={menuId}
-              placeholder="ItemsID"
-              style={{ background: "#f5f5f5" }}
-              onChange={(e) => setMenuId(e.target.value)}
             />
           </Form.Field>
           <Form.Field required>
@@ -124,6 +113,19 @@ const MenuFormModal = ({
               style={{ minWidth: 0 }}
             />
           </Form.Field>
+          {updateOpen && (
+            <Form.Field>
+              <Input
+                readOnly
+                disabled
+                type="hidden"
+                value={menuId}
+                placeholder="ItemsID"
+                style={{ background: "#f5f5f5" }}
+                onChange={(e) => setMenuId(e.target.value)}
+              />
+            </Form.Field>
+          )}
         </Form.Group>
         <Form.Field>
           <label>描述</label>

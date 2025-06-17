@@ -9,6 +9,7 @@ import MenuManagement from "./pages/MenuManagement";
 import ShopManagement from "./pages/ShopManagement";
 import { useAuth } from "./context/AuthContext";
 import Menu from "./pages/Menu";
+import MenuPost from "./pages/MenuPost";
 
 function Guard({ children }) {
   const { isLoggedIn, isAuthLoading } = useAuth();
@@ -19,38 +20,92 @@ function Guard({ children }) {
 export default function RoutesConfig() {
   const location = useLocation();
   const { isLoggedIn, isAuthLoading } = useAuth();
-  const isLoginPage = location.pathname === "/login" || location.pathname === "/";
+  const isLoginPage =
+    location.pathname === "/login" || location.pathname === "/";
 
   return (
     <>
-      {!isLoginPage  && <Header />}
+      {!isLoginPage && <Header />}
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route
           path="/login"
           element={
-            isAuthLoading
-              ? <div>載入中...</div>
-              : isLoggedIn
-                ? <Navigate to="/home" replace />
-                : <Login />
+            isAuthLoading ? (
+              <div>載入中...</div>
+            ) : isLoggedIn ? (
+              <Navigate to="/home" replace />
+            ) : (
+              <Login />
+            )
           }
         />
-        <Route path="/home" element={<Guard><Home /></Guard>} />
-        <Route path="/menu" element={<Guard><Menu /></Guard>} />
-        <Route path="/menuHistory" element={<Guard><MenuHistory /></Guard>} />
-        <Route path="/menuManagement" element={<Guard><MenuManagement /></Guard>} />
-        <Route path="/addUser" element={<Guard><UserCreate /></Guard>} />
-        <Route path="/shop" element={<Guard><ShopManagement /></Guard>} />
-        <Route path="/menuPost" element={<Guard><h1>留言板</h1></Guard>} />
+        <Route
+          path="/home"
+          element={
+            <Guard>
+              <Home />
+            </Guard>
+          }
+        />
+        <Route
+          path="/menu"
+          element={
+            <Guard>
+              <Menu />
+            </Guard>
+          }
+        />
+        <Route
+          path="/menuHistory"
+          element={
+            <Guard>
+              <MenuHistory />
+            </Guard>
+          }
+        />
+        <Route
+          path="/menuManagement"
+          element={
+            <Guard>
+              <MenuManagement />
+            </Guard>
+          }
+        />
+        <Route
+          path="/addUser"
+          element={
+            <Guard>
+              <UserCreate />
+            </Guard>
+          }
+        />
+        <Route
+          path="/shop"
+          element={
+            <Guard>
+              <ShopManagement />
+            </Guard>
+          }
+        />
+        <Route
+          path="/menuPost"
+          element={
+            <Guard>
+              <MenuPost />
+            </Guard>
+          }
+        />
         <Route
           path="*"
           element={
-            isAuthLoading
-              ? <div>載入中...</div>
-              : isLoggedIn
-                ? <Navigate to="/home" replace />
-                : <Navigate to="/login" replace />
+            isAuthLoading ? (
+              <div>載入中...</div>
+            ) : isLoggedIn ? (
+              <Navigate to="/home" replace />
+            ) : (
+              <Navigate to="/login" replace />
+            )
           }
         />
       </Routes>

@@ -39,7 +39,8 @@ const MenuManagement = () => {
   const [batchLoading, setBatchLoading] = useState(false);
   const navigate = useNavigate();
   const [refreshFlag, setRefreshFlag] = useState(false);
-    // 假設 menuList 是所有資料
+
+  // 假設 menuList 是所有資料
   const filteredMenuList = menuList.filter((item) => {
     if (filterStatus === "all") return true;
     if (filterStatus === "on")
@@ -53,18 +54,18 @@ const MenuManagement = () => {
   const groupedMenu = useMemo(() => {
     return Object.values(
       filteredMenuList.reduce((acc, item) => {
-       if (!acc[item.shopId])
-        acc[item.shopId] = {
-          shopId: item.shopId,
-          shopName: item.shopName,
-          status: item.status,
-          items: [],
-        };
+        if (!acc[item.shopId])
+          acc[item.shopId] = {
+            shopId: item.shopId,
+            shopName: item.shopName,
+            status: item.status,
+            items: [],
+          };
         acc[item.shopId].items.push(item);
         return acc;
       }, {})
     );
-  }, [filteredMenuList]); 
+  }, [filteredMenuList]);
   // groupedMenus: [{ shopId, shopName, items: [...] }, ...]
 
   const [currentPage, setCurrentPage] = useState(1);
