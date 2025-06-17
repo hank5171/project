@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.CertException;
+import com.example.demo.model.dto.UserCertDto;
 import com.example.demo.model.entity.User;
-import com.example.demo.model.entity.UserCert;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CertService;
 import com.example.demo.util.Hash;
@@ -23,7 +23,7 @@ public class CertServiceImpl implements CertService{
 	private UserRepository userRepository;
 	
 	@Override
-	public UserCert getCert(String username, String password) throws CertException {
+	public UserCertDto getCert(String username, String password) throws CertException {
 		// 檢查是否有此人
 		User user = userRepository.getUser(username);
 		/*
@@ -44,7 +44,7 @@ public class CertServiceImpl implements CertService{
 		user.setLastLoginTime(LocalDateTime.now());
 		userRepository.save(user);
 		// 3. 簽發憑證
-		UserCert userCert = new UserCert(user.getUserId(), user.getUsername(), user.getUserRole(), user.getStatus(),user.getIsDeleted());
+		UserCertDto userCert = new UserCertDto(user.getUserId(), user.getUsername(), user.getUserRole(), user.getStatus(),user.getIsDeleted());
 		return userCert;	
 	}
 }

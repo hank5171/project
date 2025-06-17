@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.demo.model.dto.MenuItemsDto;
+import com.example.demo.model.dto.MessageDto;
+import com.example.demo.model.dto.UserCertDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.entity.MenuItems;
-import com.example.demo.model.entity.UserCert;
+import com.example.demo.model.entity.Message;
 import com.example.demo.service.MenuItemsService;
 
 import jakarta.servlet.http.HttpSession;
@@ -65,7 +68,7 @@ public class MenuController {
 		MenuItems result = menuItemsService.addItems(dto);
 	    return ResponseEntity.ok(result);
 	}
-	
+
 	// 編輯菜單列表
 	@PutMapping("/{menuId}")
 	public ResponseEntity<Map<String, Object>> removeMenuItem(@PathVariable Integer menuId) throws OrderNotFoundException {
@@ -85,7 +88,7 @@ public class MenuController {
 	public ResponseEntity<?> batchOnShelf(@RequestBody Map<String, List<Integer>> request, HttpSession session) {
 	    List<Integer> shopIds = request.get("shopIds"); // 這裡 key 要和前端一致
 	    menuItemsService.onShelf(shopIds);
-	    UserCert userCert = (UserCert)session.getAttribute("userCert");
+	    UserCertDto userCert = (UserCertDto)session.getAttribute("userCert");
 	    log.info("上架: user={} ShopId={}", userCert.getUserId(),shopIds);
 	    // shopIds 就是 [1, 2]
 	    return ResponseEntity.ok(Map.of("success", true, "message", "所選店家商品已全部上架"));

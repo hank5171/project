@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.exception.UserException;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.dto.UserDto;
+import com.example.demo.model.dto.UserUpdateRequestDto;
 import com.example.demo.model.entity.User;
-import com.example.demo.model.entity.UserUpdateRequest;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.util.Hash;
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public UserDto updateUser(UserUpdateRequest req) throws UserException{
+	public UserDto updateUser(UserUpdateRequestDto req) throws UserException{
 	    User user = userRepository.findByUserId(req.getUserId());
 	    if (user == null) throw new UserException("查無此人");
 

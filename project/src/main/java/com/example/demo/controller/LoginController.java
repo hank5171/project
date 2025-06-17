@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.exception.CertException;
-import com.example.demo.model.entity.UserCert;
+import com.example.demo.model.dto.UserCertDto;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.CertService;
 
@@ -36,7 +36,7 @@ public class LoginController {
 	public ResponseEntity<ApiResponse<Void>> login(@RequestParam String username, @RequestParam String password, HttpSession session){
 	    //System.out.println("🟡 [Login API] username = " + username + ", password = " + password);
 		try {
-			UserCert userCert = certService.getCert(username, password);
+			UserCertDto userCert = certService.getCert(username, password);
 			session.setAttribute("userCert",userCert);
 			session.setAttribute("userId", userCert.getUserId());
 			System.out.println(userCert);
@@ -77,7 +77,7 @@ public class LoginController {
 					.status(HttpStatus.UNAUTHORIZED)
 					.body(ApiResponse.error(401, "登出失敗: 尚未登入"));
 		}
-		UserCert cert = (UserCert) certObj; // 轉為UserCert型態
+		UserCertDto cert = (UserCertDto) certObj; // 轉為UserCert型態
 		log.info("登出成功: user={}",cert.getUsername()); // 紀錄log
 		session.invalidate();
 		return ResponseEntity.ok(ApiResponse.success("登出成功", null ));
@@ -95,7 +95,7 @@ public class LoginController {
 	    Map<String, Object> response = new HashMap<>();
 	    Object userObj = session.getAttribute("userCert");
 
-	    if (userObj instanceof UserCert userCert) {
+	    if (userObj instanceof UserCertDto userCert) {
 	    	response.put("userId", userCert.getUserId());
 	        response.put("username", userCert.getUsername());
 	        response.put("status", userCert.getStatus());

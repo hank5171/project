@@ -13,6 +13,7 @@ import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.mapper.MenuItemsMapper;
 import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.entity.MenuItems;
+import com.example.demo.model.entity.Message;
 import com.example.demo.repository.MenuItemsRepository;
 import com.example.demo.service.MenuItemsService;
 

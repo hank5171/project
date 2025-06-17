@@ -6,6 +6,7 @@ import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.model.dto.MenuItemWithShopDTO;
 import com.example.demo.model.dto.MenuItemsDto;
 import com.example.demo.model.entity.MenuItems;
+import com.example.demo.model.entity.Message;
 
 public interface MenuItemsService {
 	public List<MenuItems> getMenuItems(); 	// 查詢已有菜單內容
@@ -15,5 +16,5 @@ public interface MenuItemsService {
 	public void removeMenuitems();
 	public void onShelf(List<Integer> shopIds);
 	public MenuItems addItems(MenuItemWithShopDTO  menuItemWithShopDTO);
-	public MenuItems updateMenuItems (MenuItemsDto menuItemsDto);
+	public MenuItems updateMenuItems(MenuItemsDto menuItemsDto);
 }

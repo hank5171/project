@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.example.demo.exception.UserException;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.dto.UserDto;
+import com.example.demo.model.dto.UserRequestDto;
+import com.example.demo.model.dto.UserUpdateRequestDto;
 import com.example.demo.model.entity.Role;
 import com.example.demo.model.entity.User;
-import com.example.demo.model.entity.UserRequest;
-import com.example.demo.model.entity.UserUpdateRequest;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.UserService;
@@ -50,7 +50,7 @@ public class UserController {
 	}
 	
     @PostMapping("/add")
-    public void addUser(@RequestBody UserRequest request) {
+    public void addUser(@RequestBody UserRequestDto request) {
     	userService.addUser(request.getUsername(),
     						request.getPassword(),
     						request.getUserRole(), 
@@ -76,7 +76,7 @@ public class UserController {
 //    }
     
     @PutMapping("/update")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserUpdateRequest req) {
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserUpdateRequestDto req) {
         UserDto userDto = null;
 		try {
 			userDto = userService.updateUser(req);
