@@ -19,13 +19,17 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.exception.PermissionDeniedException;
 import com.example.demo.model.dto.OrderDto;
+import com.example.demo.model.dto.OrderListDto;
 import com.example.demo.model.entity.Order;
 import com.example.demo.repository.OrderRepository;
+import com.example.demo.repository.OrderRepository.OrderListView;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.OrderService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Slf4j
 @RestController
@@ -58,5 +62,11 @@ public class OrderController {
 
          return ResponseEntity.ok(orders);
      }
+    
+    @GetMapping("/orderList")
+    public ResponseEntity<List<OrderListView>> getOrderList() {
+        return ResponseEntity.ok(orderRepository.findOrderList());
+    }
+    
 
 }
