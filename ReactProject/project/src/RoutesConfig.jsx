@@ -10,6 +10,8 @@ import ShopManagement from "./pages/ShopManagement";
 import { useAuth } from "./context/AuthContext";
 import Menu from "./pages/Menu";
 import MenuPost from "./pages/MenuPost";
+import MenuOrderLoan from "./pages/MenuOrderList";
+import MenuOrderList from "./pages/MenuOrderList";
 
 function Guard({ children }) {
   const { isLoggedIn, isAuthLoading } = useAuth();
@@ -69,6 +71,14 @@ export default function RoutesConfig() {
           element={
             <Guard>
               <MenuManagement />
+            </Guard>
+          }
+        />
+        <Route
+          path="/menuOrderList"
+          element={
+            <Guard>
+              <MenuOrderList />
             </Guard>
           }
         />

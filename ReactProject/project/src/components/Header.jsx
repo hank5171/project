@@ -15,6 +15,7 @@ function Header() {
   const getActiveItem = (pathname) => {
     if (pathname.startsWith("/home")) return "首頁";
     if (pathname.startsWith("/menuHistory")) return "訂單紀錄";
+    if (pathname.startsWith("/menuOrderList")) return "訂單總覽";
     if (pathname.startsWith("/menuManagement")) return "菜單管理";
     if (pathname.startsWith("/addUser")) return "新增使用者";
     if (pathname.startsWith("/shop")) return "餐廳管理";
@@ -88,6 +89,12 @@ function Header() {
         active={activeItem === "訂單紀錄"}
         as={Link}
         to="/menuHistory"
+      />
+      <Menu.Item
+        name="訂單總覽"
+        active={activeItem === "訂單總覽"}
+        as={Link}
+        to="/menuOrderList"
       />
       <Menu.Item
         name="菜單管理"
