@@ -8,6 +8,13 @@ export function handleExport({
   totalPrice,
   shopStats,
 }) {
+  const sorted = [...filtered].sort((a, b) => {
+    // 依 username 升冪排序
+    if (a.username < b.username) return -1;
+    if (a.username > b.username) return 1;
+    return 0;
+  });
+
   const headers = [
     "使用者名稱",
     "餐廳名稱",
@@ -21,7 +28,7 @@ export function handleExport({
 
   // 用 array of array 方式確保欄位順序
   const exportData = [
-    ...filtered.map((list) => [
+    ...sorted.map((list) => [
       list.username,
       list.shopname,
       list.name,
