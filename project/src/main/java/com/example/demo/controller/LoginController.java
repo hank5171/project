@@ -69,7 +69,7 @@ public class LoginController {
 	}
 	*/
 	// 登出系統
-	@GetMapping("/logout")
+	@PostMapping("/logout")
 	public ResponseEntity<ApiResponse<Void>> logout(HttpSession session){
 	    Object certObj = session.getAttribute("userCert"); // 存取session資料
 		if (session.getAttribute("userCert") == null) {

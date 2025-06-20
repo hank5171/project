@@ -7,17 +7,19 @@ export function AuthProvider({ children }) {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
+  const [userPermission, setUserPermission] = useState();
 
   useEffect(() => {
     setIsAuthLoading(true);
     fetch("http://localhost:8081/check-login", {
       method: "GET",
-      credentials: "include"
+      credentials: "include",
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setIsLoggedIn(data.status === true);
         setIsAuthLoading(false);
+        setUserPermission(data.role);
       })
       .catch(() => {
         setIsLoggedIn(false);
@@ -26,7 +28,7 @@ export function AuthProvider({ children }) {
   }, [location.pathname]);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, isAuthLoading }}>
+    <AuthContext.Provider value={{ isLoggedIn, isAuthLoading, userPermission }}>
       {children}
     </AuthContext.Provider>
   );

@@ -6,7 +6,6 @@ export const checkLoginStatus = async () => {
     method: "GET",
     credentials: "include",
   });
-  console.log("登入狀態回傳", res);
   return res.json();
 };
 
@@ -20,7 +19,6 @@ export const login = async (loginForm) => {
   return res.json();
 };
 
-// 可選：登出 API
 export const logout = async () => {
   const res = await fetch(`${API_BASE}/logout`, {
     method: "POST",

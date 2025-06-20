@@ -37,10 +37,10 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer> {
 	@Query(value = "SELECT a.menu_id, a.shop_id, b.shop_name, a.name, a.description, a.price, a.status, a.created_at, a.is_deleted FROM menu_items a LEFT JOIN shop b ON a.shop_id = b.shop_id where a.status=:status", nativeQuery = true)
 	List<MenuItemWithShopDTO> findAllMenuWithShopStatus(@Param("status") Boolean status);
 	
-	// 商品全下架
+	// 商品全下架(狀態為1的)
 	@Modifying
     @Transactional
-	@Query(value ="UPDATE menu_items SET status = 0;", nativeQuery = true)
+	@Query(value ="UPDATE menu_items SET status = 0 where status = 1;", nativeQuery = true)
 	void removeMenuitems();
 	
 	// 上架選擇商品

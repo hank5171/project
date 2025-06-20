@@ -7,10 +7,13 @@ import {
   Header,
   Input,
   Message,
+  Pagination,
 } from "semantic-ui-react";
-import * as XLSX from "xlsx";
-import { saveAs } from "file-saver";
+import { handleExport } from "../utils/exportOrderExcel";
+import { groupOrderStats } from "../utils/groupOrderStats";
 import { getOrderList } from "../services/MenuOrderList";
+
+const ITEMS_PER_PAGE = 15;
 
 function MenuOrderList() {
   const [data, setData] = useState([]);
@@ -18,6 +21,7 @@ function MenuOrderList() {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [filtered, setFiltered] = useState([]);
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
     async function fetchData() {
@@ -49,21 +53,51 @@ function MenuOrderList() {
     }
 
     setFiltered(result);
+    setActivePage(1); // 搜尋或篩選時自動回到第一頁
   }, [search, dateFrom, dateTo, data]);
 
+  // 分頁資料
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const startIdx = (activePage - 1) * ITEMS_PER_PAGE;
+  const pageData = filtered.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+  const pageTotalCount = pageData.length;
+
+  // 只算當前頁合計
+  const pageTotalQuantity = pageData.reduce(
+    (sum, list) => sum + Number(list.quantity),
+    0
+  );
+  const pageTotalPrice = pageData.reduce(
+    (sum, list) => sum + Number(list.totalprice),
+    0
+  );
+
+  // 全部資料合計（給匯出用）
   const totalQuantity = filtered.reduce(
     (sum, list) => sum + Number(list.quantity),
     0
   );
-
   const totalPrice = filtered.reduce(
     (sum, list) => sum + Number(list.totalprice),
     0
   );
 
-  const shopTelList = Array.from(
-    new Map(filtered.map((row) => [row.shopname + row.tel, row])).values()
-  );
+  // 分組統計
+  const shopStats = groupOrderStats(filtered);
+
+  // 匯出 Excel
+  const onExport = () => {
+    if (filtered.length === 0) {
+      alert("查無資料，無法匯出！");
+      return;
+    }
+    handleExport({
+      filtered,
+      totalQuantity,
+      totalPrice,
+      shopStats,
+    });
+  };
 
   function formatDateTime(isoString) {
     if (!isoString) return "";
@@ -76,58 +110,6 @@ function MenuOrderList() {
     const ss = String(date.getSeconds()).padStart(2, "0");
     return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
   }
-
-  const handleExport = () => {
-    const exportData = filtered.map((list) => ({
-      使用者名稱: list.username,
-      餐廳名稱: list.shopname,
-      餐點名稱: list.name,
-      數量: list.quantity,
-      單價: list.price,
-      總價: list.totalprice,
-      備註: list.customized,
-      建立日期: list.created_at,
-    }));
-    exportData.push({
-      使用者名稱: "",
-      餐廳名稱: "",
-      餐點名稱: "合計",
-      數量: totalQuantity,
-      單價: "",
-      總價: totalPrice,
-      備註: "",
-      建立日期: "",
-    });
-    exportData.push({
-      使用者名稱: "",
-      餐廳名稱: "",
-      餐點名稱: "",
-      數量: "",
-      單價: "",
-      總價: "",
-      備註: "",
-      建立日期: "",
-    });
-
-    shopTelList.forEach((row) => {
-      exportData.push({
-        使用者名稱: "",
-        餐廳名稱: `${row.shopname}`,
-        餐點名稱: `${row.tel}`,
-        數量: "",
-        單價: "",
-        總價: "",
-        備註: "",
-        建立日期: "",
-      });
-    });
-    const ws = XLSX.utils.json_to_sheet(exportData);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "訂單列表");
-    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-    const file = new Blob([excelBuffer], { type: "application/octet-stream" });
-    saveAs(file, "訂單總覽.xlsx");
-  };
 
   return (
     <Container style={{ marginTop: "2em" }}>
@@ -166,7 +148,7 @@ function MenuOrderList() {
               primary
               icon="file excel"
               content="匯出 Excel"
-              onClick={handleExport}
+              onClick={onExport}
             />
           </Form.Field>
         </Form.Group>
@@ -185,15 +167,17 @@ function MenuOrderList() {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {filtered.length === 0 ? (
+          {pageData.length === 0 ? (
             <Table.Row>
               <Table.Cell colSpan="8">
                 <Message warning content="查無資料" />
               </Table.Cell>
             </Table.Row>
           ) : (
-            filtered.map((list) => (
-              <Table.Row key={list.id}>
+            pageData.map((list) => (
+              <Table.Row
+                key={`${list.username}_${list.shopname}_${list.name}_${list.created_at}`}
+              >
                 <Table.Cell>{list.username}</Table.Cell>
                 <Table.Cell>{list.shopname}</Table.Cell>
                 <Table.Cell>{list.name}</Table.Cell>
@@ -208,18 +192,37 @@ function MenuOrderList() {
         </Table.Body>
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan="3" textAlign="right">
+            <Table.HeaderCell>
+              <b>筆數：{pageTotalCount}</b>
+            </Table.HeaderCell>
+            <Table.HeaderCell />
+            <Table.HeaderCell textAlign="center">
               <b>合計</b>
             </Table.HeaderCell>
             <Table.HeaderCell>
-              <b>{totalQuantity}</b>
+              <b>{pageTotalQuantity}</b>
             </Table.HeaderCell>
             <Table.HeaderCell />
             <Table.HeaderCell>
-              <b>{totalPrice}</b>
+              <b>{pageTotalPrice}</b>
             </Table.HeaderCell>
             <Table.HeaderCell />
             <Table.HeaderCell />
+          </Table.Row>
+          <Table.Row>
+            <Table.HeaderCell colSpan="8" textAlign="center">
+              {totalPages > 1 && (
+                <Pagination
+                  activePage={activePage}
+                  totalPages={totalPages}
+                  onPageChange={(_, data) => setActivePage(data.activePage)}
+                  size="small"
+                  siblingRange={1}
+                  boundaryRange={1}
+                  ellipsisItem={null}
+                />
+              )}
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Footer>
       </Table>

@@ -36,8 +36,10 @@ const ShopManagement = () => {
     try {
       if (editing) {
         await updateShop(form);
+        alert("修改成功");
       } else {
         await addShop(form);
+        alert("新增成功");
       }
       setForm(emptyForm);
       setEditing(false);

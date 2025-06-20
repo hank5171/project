@@ -17,7 +17,7 @@ const BatchOnShelfModal = ({
   loading,
 }) => {
   // 狀態篩選 state
-  const [statusFilter, setStatusFilter] = useState("off");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   // 依 shopId 去重複
   const uniqueShopOptions = Array.from(

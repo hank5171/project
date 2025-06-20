@@ -2,7 +2,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/NewHome";
 import Login from "./pages/Login";
-import ProtectedRoute from "./components/ProtectedRoute";
+// import ProtectedRoute from "./components/ProtectedRoute";
 import UserCreate from "./pages/UserCreate";
 import MenuHistory from "./pages/MenuHistory";
 import MenuManagement from "./pages/MenuManagement";
@@ -10,14 +10,22 @@ import ShopManagement from "./pages/ShopManagement";
 import { useAuth } from "./context/AuthContext";
 import Menu from "./pages/Menu";
 import MenuPost from "./pages/MenuPost";
-import MenuOrderLoan from "./pages/MenuOrderList";
 import MenuOrderList from "./pages/MenuOrderList";
 
-function Guard({ children }) {
-  const { isLoggedIn, isAuthLoading } = useAuth();
+function PermissionGuard({ children, allowedPermissions }) {
+  const { isLoggedIn, isAuthLoading, userPermission } = useAuth();
   if (isAuthLoading) return <div>載入中...</div>;
-  return <ProtectedRoute isLoggedIn={isLoggedIn}>{children}</ProtectedRoute>;
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!allowedPermissions.includes(userPermission)) {
+    return <Navigate to="/403" replace />; // 無權限頁面
+  }
+
+  return children;
 }
+// return <ProtectedRoute isLoggedIn={isLoggedIn}>{children}</ProtectedRoute>;
 
 export default function RoutesConfig() {
   const location = useLocation();
@@ -45,65 +53,65 @@ export default function RoutesConfig() {
         <Route
           path="/home"
           element={
-            <Guard>
+            <PermissionGuard allowedPermissions={[1, 2]}>
               <Home />
-            </Guard>
+            </PermissionGuard>
           }
         />
         <Route
           path="/menu"
           element={
-            <Guard>
+            <PermissionGuard allowedPermissions={[1, 2]}>
               <Menu />
-            </Guard>
+            </PermissionGuard>
           }
         />
         <Route
           path="/menuHistory"
           element={
-            <Guard>
+            <PermissionGuard allowedPermissions={[1, 2]}>
               <MenuHistory />
-            </Guard>
+            </PermissionGuard>
           }
         />
         <Route
           path="/menuManagement"
           element={
-            <Guard>
+            <PermissionGuard allowedPermissions={[1]}>
               <MenuManagement />
-            </Guard>
+            </PermissionGuard>
           }
         />
         <Route
           path="/menuOrderList"
           element={
-            <Guard>
+            <PermissionGuard allowedPermissions={[1]}>
               <MenuOrderList />
-            </Guard>
+            </PermissionGuard>
           }
         />
         <Route
           path="/addUser"
           element={
-            <Guard>
+            <PermissionGuard allowedPermissions={[1]}>
               <UserCreate />
-            </Guard>
+            </PermissionGuard>
           }
         />
         <Route
           path="/shop"
           element={
-            <Guard>
+            <PermissionGuard allowedPermissions={[1]}>
               <ShopManagement />
-            </Guard>
+            </PermissionGuard>
           }
         />
         <Route
           path="/menuPost"
           element={
-            <Guard>
+            <PermissionGuard allowedPermissions={[2]}>
               <MenuPost />
-            </Guard>
+            </PermissionGuard>
           }
         />
         <Route
