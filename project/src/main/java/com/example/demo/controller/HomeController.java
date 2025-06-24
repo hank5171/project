@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j // 紀錄log
 @Controller
 @RequestMapping("/home")
-@CrossOrigin(origins = {"http://localhost:8002","http://localhost:5173"}, allowCredentials = "true") // allowCredentials = "true" 允許接收客戶端傳來的憑證資料,例如: session id
+//@CrossOrigin(origins = "${cors.allowed-origins}", allowCredentials = "true") // allowCredentials = "true" 允許接收客戶端傳來的憑證資料,例如: session id << 用 CorsConfig 來管理
 public class HomeController {
 	
 	

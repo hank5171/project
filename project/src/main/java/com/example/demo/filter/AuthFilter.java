@@ -15,14 +15,15 @@ public class AuthFilter implements Filter {
 	    HttpServletResponse response = (HttpServletResponse) res;
 
 	    // 加入 CORS header
-	    response.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-	    response.setHeader("Access-Control-Allow-Credentials", "true");
-	    response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-	    response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//	    response.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+//	    response.setHeader("Access-Control-Allow-Credentials", "true");
+//	    response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//	    response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
 	    // 放行預檢請求
 	    if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
 	        response.setStatus(HttpServletResponse.SC_OK);
+	        chain.doFilter(req, res); // 放行到 Spring CORS 處理
 	        return;
 	    }
 

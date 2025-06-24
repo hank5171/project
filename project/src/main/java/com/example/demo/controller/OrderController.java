@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 @RestController
 @RequestMapping("/order")
-@CrossOrigin(origins = {"http://localhost:8002","http://localhost:5173"}, allowCredentials = "true") // allowCredentials = "true" 允許接收客戶端傳來的憑證資料,例如: session id
+//@CrossOrigin(origins = "${cors.allowed-origins}", allowCredentials = "true") // allowCredentials = "true" 允許接收客戶端傳來的憑證資料,例如: session id << 用 CorsConfig 來管理
 public class OrderController {
 
     @Autowired
