@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.mapper.ShopMapper;
-import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.dto.ShopDto;
-import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.entity.Shop;
 import com.example.demo.repository.ShopRepository;
 import com.example.demo.service.shopService;
@@ -41,8 +38,8 @@ public class ShopServiceImpl implements shopService {
 	}
 	// 新增餐廳
 	@Override
-	public void addShop(Shop shop) {
-		Shop newShop = new Shop(shop.getShopId(),shop.getShopName(),shop.getTel(),shop.getShopAddress(),shop.getIsDeleted());
+	public void addShop(ShopDto shopDto) {
+		Shop newShop = new Shop(shopDto.getShopId(),shopDto.getShopName(),shopDto.getTel(),shopDto.getShopAddress(),shopDto.getIsDeleted());
 		shopRepository.save(newShop);
 	}
 

@@ -28,9 +28,9 @@ public class ShopController {
      }
     
     @PostMapping("/add")
-    public ResponseEntity<Shop> addShop(@RequestBody Shop shop){
-    	shopService.addShop(shop);
-    	return ResponseEntity.ok(shop);
+    public ResponseEntity<ShopDto> addShop(@RequestBody ShopDto shopDto){
+    	shopService.addShop(shopDto);
+    	return ResponseEntity.ok(shopDto);
     }
 
     @PutMapping("/update")
