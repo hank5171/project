@@ -44,11 +44,11 @@ public class OrderController {
     private OrderRepository orderRepository;
 
     @PostMapping
-    public ResponseEntity<?> createOrder(@RequestBody Order order) {
-    	order.setTotalPrice(order.getTotalPrice());
-        order.setCreated_at(LocalDateTime.now());
-        order.setUpdated_at(LocalDateTime.now());
-        Order saved = orderService.createOrder(order);
+    public ResponseEntity<Order> createOrder(@RequestBody OrderDto orderDto) {
+        orderDto.setTotalPrice(orderDto.getTotalPrice());
+        orderDto.setCreated_at(LocalDateTime.now());
+        orderDto.setUpdated_at(LocalDateTime.now());
+        Order saved = orderService.createOrder(orderDto);
         return ResponseEntity.ok(saved);
     }
     
